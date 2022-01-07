@@ -1,0 +1,288 @@
+*, html {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+html {
+    height: 100vh;
+}
+#covid-banner {
+    text-align: center;
+    margin: 0;
+    padding: 10px 10px;
+    text-decoration: underline;
+    /* font-size: 1rem; */
+    margin: auto;
+    height: auto;
+    width: auto;
+    background-color: #27c2a823;
+    border: 0;
+}
+#modal-button {
+    padding: -15px;
+}
+#carousel-banner img{
+    height: auto;
+}
+/* OSC Sections */
+#osc {
+    text-align: center;
+    color: #27b8c2;
+    background-color: #ebe5e273;
+    margin: 0;
+}
+/* Navbar */
+#nav-real-links {
+    text-align: center;
+    padding: 0px 15%;
+}
+#basic-navbar-nav {
+    font-size: 1.2rem;
+    padding: 25px 0px;
+    background-color: white;
+    z-index: 10;
+}
+.show {
+    /* border: 2px solid white; */
+    border-radius: 20px;
+}
+#navbar {
+    height: 124px;
+}
+#navbar img {
+    height: 100%;
+}
+
+/* Middle section */
+#main-cg {
+    text-align: center;
+    /* height: 20vh; */
+    padding: 25px 30px;
+    border-top: 4px solid #27b8c2;
+    /* border-bottom: 4px solid #27b8c2; */
+}
+#main-cg * {
+    border: 0;
+}
+#main-cg img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    border: 4px solid #27b8c2;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 50%; */
+}
+#main-cg a {
+    padding: 10px;
+}
+
+/* Footer */
+#footer {
+    padding: 10px;
+    text-align: center;
+    height: auto;
+    width: 100%;
+    color: #302f4d;
+    background-color: rgba(73, 59, 43, 0.432);
+}
+footer {
+    border-top: 4px solid #27b8c2;
+    color: #302f4d;
+    width: 100%;
+    /* position: fixed; */
+}
+footer a {
+    color: black;
+}
+#footer-start {
+    height: 230px;
+    /* background-image: image('4p_logo.png') */
+}
+footer iframe{
+    height: 240px;
+    width: auto;
+    border: 2px dashed black;
+}
+.thirds {
+    height: 100%;
+    border: 1px solid red;
+    padding: 5px;
+}
+#fpsc-third {
+    padding: calc(4% + 5px) 0px 0px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+#fpsc-third a {
+    text-decoration: wavy;
+    text-align: left;
+    /* color: black; */
+    line-height: 10px;
+}
+span#third-title {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: larger;
+}
+footer .card {
+    background-color: #ebe5e2;
+    color: black;
+    padding-top: 0px;
+    border: 0;
+}
+
+/* Page Title */
+#page-title {
+    background-color: #ebe5e2;
+    /* padding-left: 12%; */
+    margin-bottom: 0px;
+    /* border-top: 3px solid #27b8c2; */
+    border-bottom: 3px solid #27b8c2;   
+}
+
+/* Content Styles */
+#content-page {
+    /* padding: 0;
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    background-color: #ebe5e273;
+    /* background-color: #302f4d; */
+    /* border: 0; */
+}
+.content-left {
+    width: 15%;
+    /* min-width: 100px; */
+    height: 100%;
+    display: flex;
+    text-align: center;
+    text-decoration: underline;
+    padding: 5px;
+    /* vertical-align: middle; */
+    border: 0;
+}
+.content-left li, .content-left a {
+    text-align: left;
+    color: black;
+    text-decoration: white;
+}
+.content-right {
+    padding: 5vh 4vw;
+    border: 0;
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+#related-small {
+    display: none;
+}
+
+/* Surgeons */
+.surgeon-card {
+    border: 1px solid rgba(128, 128, 128, 0.308);
+    border-radius: 20px;
+    box-sizing:content-box;
+    /* width: 100%; */
+    /* width: 40%; */
+    margin: 5px;
+    padding: 12px;
+}
+.surgeon-card button {
+    float: right;
+}
+#surgeon-card-header {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1.2rem;
+}
+#surgeon-card-header > p {
+    font-weight: normal;
+    font-size: 0.7rem;
+}
+#spinner-id {
+    height: 50vh;
+    width: 100%;
+    text-align: center;
+    vertical-align: center;
+}
+
+/* Contact Form */
+#contact-container {
+    width: 100vw;
+    height: 55vh;
+    text-align: center;
+    margin: auto;
+}
+
+#contact-left, #contact-right {
+    width: 30vw;
+    height: 85%;
+    margin: 3% auto auto auto;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+#contact-left .card-header, #contact-right .card-header {
+    text-align: center;
+    font-size: 1.2rem;
+}
+#contact-iframe {
+    border: 2px solid black;
+    border-radius: 20px;
+    text-align: center;
+    margin: auto auto 5% auto;
+    height: 50%;
+    width: 75%;
+    box-shadow: black 0px 0px 15px;
+}
+
+/* Paperwork */
+#link-pill a {
+    color: white;
+    text-decoration: none;
+}
+span#paper-card {
+    font-weight: lighter;
+    color: gray;
+    font-size: 0.9rem;
+    /* color: red; */
+}
+/* Media queries */
+@media screen and (max-width: 880px) {
+    #content-left, #footer, #main-title-elm {
+        display: none;
+    }
+    #related-small, #related-small a {
+        display: inline-block;
+        text-align: center;
+        font-size: 17px;
+        /* padding: auto; */
+    }
+    #page-title {
+        text-align: center;
+        padding: none;
+    }
+    .content-right {
+        width: 100%;
+    }
+    #logo-holder, #fpsc-third {
+        margin: 0;
+    }
+    #fpsc-third {
+        padding-top: 17%;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    #related-small, #related-small a {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 881px){
+    #page-title {
+        padding-left: 12%;
+    }
+}
