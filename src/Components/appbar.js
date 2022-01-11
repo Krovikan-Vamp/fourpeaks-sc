@@ -14,7 +14,7 @@ export default function navbar() {
                         <NavDropdown title="For Patients" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/patients/paperwork">Paperwork</NavDropdown.Item>
                             <NavDropdown.Item href="/about/services">Services</NavDropdown.Item>
-                            <NavDropdown.Item href="/patients/billing" disabled>Billing Info</NavDropdown.Item>
+                            <NavDropdown.Item href="/patients/billing" disabled>Testimonials</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4" disabled>One Medical Passport</NavDropdown.Item>
                         </NavDropdown>

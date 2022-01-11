@@ -16,6 +16,7 @@ import Services from "./Components/Services.js";
 import Anesthesiologists from "./Components/Anesthesia.js";
 import ContactForm from "./Components/Contact.js";
 import Paperwork from './Components/Paperwork.js'
+import Testimonials from "./Components/Testimonials.js";
 
 function App() {
   const [show, setShow] = useState(false)
@@ -51,7 +52,7 @@ function App() {
 
         {/* Patients */}
         <Route path='/patients/paperwork' element={<Paperwork />} />
-
+        <Route path='/testimonials' element={<Testimonials />} />
         <Route path='/contact' element={<ContactForm />} />
         {/* Coming soon... */}
         {/* <Route path='/signup' element={<RegisterForm />} />

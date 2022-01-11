@@ -34,6 +34,11 @@ var Employee = {
     name: String,
     position: String
 }
+var Testimonial = {
+    collection: `Testimonials`,
+    comments: String,
+    date: String
+}
 // const choice = prompt(`Choose what to add to: `);
 
 // if (choice == `Anesthesia`) {
@@ -113,7 +118,15 @@ function Staff() {
     // Send to the db function
     putInDB(Employee)
 }
-Staff()
+function Review() {
+    // prompt(`Please input the surgeon name: `);
+    Testimonial.date = prompt(`Procedure date (month, year): `)
+    Testimonial.comments = prompt(`Please input any patient comments: `);
+
+    console.log(Testimonial)
+    putInDB(Testimonial)
+}
+Review()
 async function putInDB(info) {
     await db.collection(info.collection).doc().set(info)
     // console.log(`Added ${info.full_name} to ${info.collection}`)
