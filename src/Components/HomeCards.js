@@ -4,9 +4,9 @@ import { Card, Button, CardGroup, Nav } from 'react-bootstrap'
 export default function CardWithPic() {
   return (
     <CardGroup id='main-cg' >
-      <Card><Nav.Link className='card-anchor' href='/patients/dayof' disabled>
+      <Card><Nav.Link className='card-anchor' href='/patients/paperwork' >
         <Card.Img alt='' variant='top' src='./Images/contract.png' />
-        <Card.Title>What to expect</Card.Title>
+        <Card.Title>Paperwork</Card.Title>
       </Nav.Link></Card>
       <Card><Nav.Link className='card-anchor' href='/about/surgeons'>
         <Card.Img alt='' variant='top' src='./Images/doctor.png' />
@@ -16,7 +16,7 @@ export default function CardWithPic() {
         <Card.Img alt='' variant='top' src='./Images/information.png' />
         <Card.Title>About Us</Card.Title>
       </Nav.Link></Card>
-      <Card><Nav.Link className='card-anchor' href='/about' disabled>
+      <Card><Nav.Link className='card-anchor' href='/testimonials'>
         <Card.Img alt='' variant='top' src='./Images/testimonial.png' />
         <Card.Title>Testimonials</Card.Title>
       </Nav.Link></Card>

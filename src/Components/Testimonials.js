@@ -6,10 +6,10 @@ import { app } from '../firebase.js'
 export default function Testimonials() {
     const [testimonials, setTestimonials] = useState([])
 
-    function getTests() {
+    async function getTests() {
 
         // setLoading(true);
-        const dbRef = app.firestore().collection('Testimonials').orderBy('date')
+        const dbRef = await app.firestore().collection('Testimonials').orderBy('date', 'desc')
         dbRef.onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
@@ -24,8 +24,19 @@ export default function Testimonials() {
         getTests()
     }, [])
 
+    let unique = [...new Set(testimonials.map(item => item.date))];
+    let uniqueOccs = []
 
-    console.log(testimonials)
+    for (let i = 0; i < unique.length; i++) {
+        uniqueOccs.push({
+            date: unique[i],
+            occurrences: testimonials.reduce((n, test) => {
+                return n + (test.date == unique[i])
+            }, 0)
+        })
+    }
+    console.log(uniqueOccs)
+
     return (<>
         <Alert id='page-title' variant="light">
 
@@ -48,43 +59,34 @@ export default function Testimonials() {
                 <Nav.Link href={`/`}>Nothing else</Nav.Link>
                 {/* </ol> */}
             </Card>
-            <Card className='content-right' >
+            <Card className='content-right'>
                 {/* className='content-right' */}
                 <h4>Patient Testimonials</h4>
-                <Card.Body>
-                    {testimonials.map((test) => {
-                        let unique = [...new Set(testimonials.map(item => item.date))];
-                        let uniqueOccs = []
-                        const countOccs = (arr, search) => {
-                            arr.reduce(function (n, obj) {
-                                return n + (obj.date == search)
-                            })
+                <div className='review-card-container'>
+                    {uniqueOccs.map((date) => {
+                        let elements = [];
+                        for (let i = 0; i < date.occurrences; i++) {
+                            if (i == date.occurrences - 1) {
+                                elements.push(<>
+                                    <div className='review-card'>
+                                        <li className='comment'>"{testimonials[i].comments}"</li>
+                                    </div>
+                                    <hr />
+                                </>)
+                            } else {
+                                elements.push(
+                                    <div className='review-card'>
+                                        <li className='comment'>"{testimonials[i].comments}"</li>
+                                    </div>
+                                )
+                            }
                         }
-
-                        console.log(countOccs(testimonials, 'date'))
-                        for (let i = 0; i < unique.length; i++) {
-                            uniqueOccs.push({ date: unique[i], occurrences: countOccs(testimonials, unique[i]) });
-                        }
-                        console.log(`Lets hope this works...`, uniqueOccs)
-
-
-                        if (testimonials.indexOf(test) === (testimonials.length - 1)) {
-                            return (
-                                <div className='review-card' key={test.id}>
-                                    <h5>{test.date}</h5>
-                                    <div className='comment'>{test.comments}</div>
-                                </div>
-                            )
-                        }
-                        return (
-                            <div className='review-card' key={test.id}>
-                                <h5>{test.date}</h5>
-                                <div className='comment'>{test.comments}</div>
-                                <hr />
-                            </div>
-                        )
+                        return (<div className='card-body'>
+                            <h5>{date.date.substring(3, date.date.length)}</h5>
+                            {elements}
+                        </div>)
                     })}
-                </Card.Body>
+                </div>
             </Card>
         </Container>
 

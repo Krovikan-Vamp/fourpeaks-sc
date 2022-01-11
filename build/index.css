@@ -75,8 +75,8 @@ html {
 }
 #main-cg a {
     padding: 10px;
+    color: black;
 }
-
 /* Footer */
 #footer {
     padding: 10px;
@@ -92,6 +92,12 @@ footer {
     width: 100%;
     /* position: fixed; */
 }
+footer img {
+    text-align: center;
+    margin: auto;
+    height: 124px;
+    width: 247px;
+}
 footer a {
     color: black;
 }
@@ -100,14 +106,15 @@ footer a {
     /* background-image: image('4p_logo.png') */
 }
 footer iframe{
-    height: 240px;
-    width: auto;
-    border: 2px dashed black;
+    /* height: 240px; */
+    width: 70%;
+    margin: auto;
+    border: 3px dashed black;
 }
 .thirds {
     height: 100%;
-    border: 1px solid red;
-    padding: 5px;
+    /* border: 5px solid red; */
+    /* padding: 5px; */
 }
 #fpsc-third {
     padding: calc(4% + 5px) 0px 0px 10px;
@@ -115,12 +122,13 @@ footer iframe{
     vertical-align: middle;
 }
 #fpsc-third a {
-    text-decoration: wavy;
     text-align: left;
     /* color: black; */
     line-height: 10px;
 }
 span#third-title {
+    /* padding-left: 100px; */
+    text-align: center;
     font-weight: bold;
     text-decoration: underline;
     font-size: larger;
@@ -149,13 +157,15 @@ footer .card {
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
-    background-color: #ebe5e273;
+    /* background-color: #ebe5e273; */
+    background: linear-gradient(#ebe5e2c9, white);
     /* background-color: #302f4d; */
     /* border: 0; */
 }
 .content-left {
     width: 15%;
     /* min-width: 100px; */
+    box-shadow: gray -10px 10px 20px;
     height: 100%;
     display: flex;
     text-align: center;
@@ -173,7 +183,7 @@ footer .card {
     padding: 5vh 4vw;
     border: 0;
     width: 60%;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
 }
 #related-small {
@@ -182,7 +192,8 @@ footer .card {
 
 /* Surgeons */
 .surgeon-card {
-    border: 1px solid rgba(128, 128, 128, 0.308);
+    border: 2px solid rgba(128, 128, 128, 0.308);
+    /* box-shadow: black 0px 0px 10px; */
     border-radius: 20px;
     box-sizing:content-box;
     /* width: 100%; */
@@ -210,20 +221,32 @@ footer .card {
 }
 
 /* Contact Form */
-#contact-form {
-    width: 55vw;
-    margin: 4% auto 4% auto;
-    height: 50vh;
-    /* margin-top: 2%; */
-    border: 1px solid gray;
-    box-shadow: #27b8c27e 0px 0px 20px;
-    border-radius: 20px;
-    padding: 3%;
+#contact-container {
+    width: 100vw;
+    height: 55vh;
+    text-align: center;
+    margin: auto;
 }
-#contact-header {
-    /* text-align: center; */
-    /* text-decoration: underline; */
-    font-weight: bold;
+
+#contact-left, #contact-right {
+    width: 30vw;
+    height: 85%;
+    margin: 3% auto auto auto;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+#contact-left .card-header, #contact-right .card-header {
+    text-align: center;
+    font-size: 1.2rem;
+}
+#contact-iframe {
+    border: 2px solid black;
+    border-radius: 20px;
+    text-align: center;
+    margin: auto auto 5% auto;
+    height: 50%;
+    width: 75%;
+    box-shadow: black 0px 0px 15px;
 }
 
 /* Paperwork */
@@ -237,13 +260,27 @@ span#paper-card {
     font-size: 0.9rem;
     /* color: red; */
 }
+
+/* Testimonials */
+.review-card {
+    /* padding: 1em; */
+    /* border: 1px solid red; */
+    margin: 0;
+    padding: 0.5em 1em 0em 0.5em;
+    /* border-bottom: 1px solid gray; */
+}
+.review-card + hr {
+    margin-top: 3em;
+    /* padding-top: 2em; */
+}
+
 /* Media queries */
 @media screen and (max-width: 880px) {
     #content-left, #footer, #main-title-elm {
         display: none;
     }
     #related-small, #related-small a {
-        display: inline-block;
+        display: inline-flex;
         text-align: center;
         font-size: 17px;
         /* padding: auto; */
@@ -262,7 +299,12 @@ span#paper-card {
         padding-top: 17%;
     }
 }
-
+@media screen and (max-width: 576px) {
+    
+    #fpsc-third, #iframe-div, #logo-holder {
+        background-color: #ebe5e2;
+    }
+}
 @media screen and (max-width: 415px) {
     #related-small, #related-small a {
         font-size: 14px;
@@ -273,4 +315,29 @@ span#paper-card {
     #page-title {
         padding-left: 12%;
     }
+        /* #fpsc-third {
+            background: linear-gradient(0.25turn, #9286806e, white);
+        }
+        #iframe-div {
+            background: linear-gradient(-0.25turn, #9286806e, white);
+        }
+        #logo-holder {
+            background: linear-gradient(0.25turn, white, #9286801a, white);
+        }     */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

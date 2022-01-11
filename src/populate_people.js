@@ -120,7 +120,8 @@ function Staff() {
 }
 function Review() {
     // prompt(`Please input the surgeon name: `);
-    Testimonial.date = prompt(`Procedure date (month, year): `)
+    let ogDate = prompt(`Procedure date (month, year): `)
+    Testimonial.date = ogDate.substring(ogDate.length - 2, ogDate.length).concat(ogDate)
     Testimonial.comments = prompt(`Please input any patient comments: `);
 
     console.log(Testimonial)
