@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Nav, Container, Card, Alert } from 'react-bootstrap'
-import { Rating } from 'react-simple-star-rating'
 import { app } from '../firebase.js'
 
 export default function Testimonials() {
@@ -31,7 +30,7 @@ export default function Testimonials() {
         uniqueOccs.push({
             date: unique[i],
             occurrences: testimonials.reduce((n, test) => {
-                return n + (test.date == unique[i])
+                return n + (test.date === unique[i])
             }, 0)
         })
     }
@@ -66,7 +65,7 @@ export default function Testimonials() {
                     {uniqueOccs.map((date) => {
                         let elements = [];
                         for (let i = 0; i < date.occurrences; i++) {
-                            if (i == date.occurrences - 1) {
+                            if (i === date.occurrences - 1) {
                                 elements.push(<>
                                     <div className='review-card'>
                                         <li className='comment'>"{testimonials[i].comments}"</li>
