@@ -12,6 +12,7 @@ var Anesthesiologist = {
     name: String
 }
 var Service = {
+    collection: 'services',
     full_name: String,
     short_name: String,
     description: String
@@ -127,7 +128,8 @@ function Review() {
     console.log(Testimonial)
     putInDB(Testimonial)
 }
-Review()
+// Review()
+Services()
 async function putInDB(info) {
     await db.collection(info.collection).doc().set(info)
     // console.log(`Added ${info.full_name} to ${info.collection}`)

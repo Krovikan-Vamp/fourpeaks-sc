@@ -50,9 +50,9 @@ export default function Paperwork() {
                 {/* <span id='main-title-elm'>{pathRef[pathRef.length - 1].toLocaleUpperCase()}</span> */}
                 <div id='related-small'>
                     <Nav.Link href={`/${ppw.related_links[3]}`}>{`${ppw.related_links[3].charAt(0).toUpperCase()}${ppw.related_links[3].slice(1)}`}</Nav.Link>
-                    <Nav.Link href={`/${ppw.parent_path}/${ppw.related_links[0]}`} disabled>{`${ppw.related_links[0].charAt(0).toUpperCase()}${ppw.related_links[0].slice(1)}`}</Nav.Link>
-                    <Nav.Link href={`/${ppw.parent_path}/${ppw.related_links[1]}`} disabled>{`${ppw.related_links[1].charAt(0).toUpperCase()}${ppw.related_links[1].slice(1)}`}</Nav.Link>
-                    <Nav.Link href={`/${ppw.parent_path}/${ppw.related_links[2]}`} disabled>{`${ppw.related_links[2].charAt(0).toUpperCase()}${ppw.related_links[2].slice(1)}`}</Nav.Link>
+                    <Nav.Link href={`/contact`}>Contact</Nav.Link>
+                    <Nav.Link href={`/about/services`}>Services</Nav.Link>
+                    <Nav.Link href={`/testimonials`}>Testimonials</Nav.Link>
                 </div>
             </Alert>
             {/* Container */}
@@ -62,9 +62,9 @@ export default function Paperwork() {
                     <h5>Related Links</h5>
                     {/* <ol> */}
                     <Nav.Link href={`/${ppw.related_links[3]}`}>{`${ppw.related_links[3].charAt(0).toUpperCase()}${ppw.related_links[3].slice(1)}`}</Nav.Link>
-                    <Nav.Link href={`/${ppw.parent_path}/${ppw.related_links[0]}`} disabled>{`${ppw.related_links[0].charAt(0).toUpperCase()}${ppw.related_links[0].slice(1)}`}</Nav.Link>
-                    <Nav.Link href={`/${ppw.parent_path}/${ppw.related_links[1]}`} disabled>{`${ppw.related_links[1].charAt(0).toUpperCase()}${ppw.related_links[1].slice(1)}`}</Nav.Link>
-                    <Nav.Link href={`/${ppw.related_links[2]}`} disabled>{`${ppw.related_links[2].charAt(0).toUpperCase()}${ppw.related_links[2].slice(1)}`}</Nav.Link>
+                    <Nav.Link href={`/contact`}>Contact</Nav.Link>
+                    <Nav.Link href={`/about/services`}>Services</Nav.Link>
+                    <Nav.Link href={`/testimonials`}>Testimonials</Nav.Link>
                     {/* </ol> */}
                 </Card>
                 <Card className='content-right' >

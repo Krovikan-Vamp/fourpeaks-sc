@@ -52,7 +52,7 @@ export default function Surgeons() {
                 <div id='related-small'>
                     <Nav.Link href={`/about`}>About</Nav.Link>
                     <Nav.Link href={`/about/anesthesia`}>Anesthesia</Nav.Link>
-                    <Nav.Link href={`/about/staff`} disabled>Staff</Nav.Link>
+                    <Nav.Link href={`/contact`}>Contact</Nav.Link>
                     <Nav.Link href={`/about/services`}>Services</Nav.Link>
                 </div>
             </Alert>
@@ -63,7 +63,7 @@ export default function Surgeons() {
                     {/* <ol> */}
                     <Nav.Link href={`/about`}>About</Nav.Link>
                     <Nav.Link href={`/about/anesthesia`}>Anesthesia</Nav.Link>
-                    <Nav.Link href={`/about/staff`} disabled>Staff</Nav.Link>
+                    <Nav.Link href={`/contact`}>Contact</Nav.Link>
                     <Nav.Link href={`/about/services`}>Services</Nav.Link>
                 </Card>
 

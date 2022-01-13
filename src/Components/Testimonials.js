@@ -41,10 +41,10 @@ export default function Testimonials() {
 
             {/* <span id='main-title-elm'>{pathRef[pathRef.length - 1].toLocaleUpperCase()}</span> */}
             <div id='related-small'>
-                <Nav.Link href={'/'}>{`Nothin`}</Nav.Link>
-                <Nav.Link href={'/'} disabled>Bruh</Nav.Link>
-                <Nav.Link href={'/'}>{`Nothing else`}</Nav.Link>
-                <Nav.Link href={'/'}>{`Nothing else`}</Nav.Link>
+                <Nav.Link href={`/about`}>About</Nav.Link>
+                <Nav.Link href={`/contact`}>Contact</Nav.Link>
+                <Nav.Link href={`/patients/paperwork`}>Paperwork</Nav.Link>
+                <Nav.Link href={`/about/services`}>Services</Nav.Link>
             </div>
         </Alert>
         <Container id='content-page' fluid>
@@ -52,10 +52,10 @@ export default function Testimonials() {
                 {/* className='content-left' */}
                 <h5>Related Links</h5>
                 {/* <ol> */}
-                <Nav.Link href={`/`}>Nothing</Nav.Link>
-                <Nav.Link href={`/`} disabled>Nothing</Nav.Link>
-                <Nav.Link href={`/`}>Nothing else</Nav.Link>
-                <Nav.Link href={`/`}>Nothing else</Nav.Link>
+                <Nav.Link href={`/about`}>About</Nav.Link>
+                <Nav.Link href={`/contact`}>Contact</Nav.Link>
+                <Nav.Link href={`/patients/paperwork`}>Paperwork</Nav.Link>
+                <Nav.Link href={`/about/services`}>Services</Nav.Link>
                 {/* </ol> */}
             </Card>
             <Card className='content-right'>
