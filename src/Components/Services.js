@@ -1,4 +1,4 @@
-import { Card, Container, Alert, Nav, Spinner } from "react-bootstrap";
+import { Card, Container, Alert, Nav, Spinner, Accordion } from "react-bootstrap";
 import React, { useState, useEffect } from 'react';
 import { app } from '../firebase.js'
 
@@ -14,8 +14,8 @@ export default function Services() {
     function getPages() {
 
         setLoading(true);
-        const dbRef = app.firestore().collection('services')
-        console.log(dbRef)
+        const dbRef = app.firestore().collection('services').orderBy('full_name', 'asc')
+
         dbRef.onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
@@ -27,7 +27,7 @@ export default function Services() {
     }
     useEffect(() => {
         getPages()
-        console.log(page)
+        // console.log(page)
     }, [])
     if (loading) {
         return (
@@ -54,7 +54,7 @@ export default function Services() {
             <div id='related-small'>
                 <Nav.Link href={`/about`}>About</Nav.Link>
                 <Nav.Link href={`/about/anesthesia`}>Anesthesia</Nav.Link>
-                <Nav.Link href={`/about/staff`} disabled>Staff</Nav.Link>
+                <Nav.Link href={`/contact`}>Contact</Nav.Link>
                 <Nav.Link href={`/about/surgeons`}>Surgeons</Nav.Link>
             </div>
         </Alert>
@@ -65,23 +65,62 @@ export default function Services() {
                 {/* <ol> */}
                 <Nav.Link href={`/about`}>About</Nav.Link>
                 <Nav.Link href={`/about/anesthesia`}>Anesthesia</Nav.Link>
-                <Nav.Link href={`/about/staff`} disabled>Staff</Nav.Link>
+                <Nav.Link href={`/contact`}>Contact</Nav.Link>
                 <Nav.Link href={`/about/surgeons`}>Surgeons</Nav.Link>
             </Card>
             <Card className='content-right'>
                 <h4>Services</h4>
-                {page.map((serviceRef) => (
-                    <div className='surgeon-card' key={serviceRef.id}>
-                        <span id='surgeon-card-header'>{serviceRef.full_name}</span><span id='short_name'> - {serviceRef.short_name}</span>
-                        <hr />
-                        <p>{serviceRef.description}</p>
-                        {/* Modal */}
-
-                        {/* End Modal */}
-                    </div>
-                ))}
+                <Accordion>
+                    {page.map((serv) => {
+                        if (serv.short_name !== '') {
+                            return (
+                                <Accordion.Item key={serv.id} eventKey={page.indexOf(serv)}>
+                                    <Accordion.Header>{serv.full_name}</Accordion.Header>
+                                    <Accordion.Body>
+                                        <div className='service-subheader'>Also known as: {serv.short_name}</div>
+                                        {serv.description}
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            )
+                        } else {
+                            return (
+                                <Accordion.Item eventKey={page.indexOf(serv)}>
+                                    <Accordion.Header>{serv.full_name}</Accordion.Header>
+                                    <Accordion.Body>{serv.description}</Accordion.Body>
+                                </Accordion.Item>
+                            )
+                        }
+                    })}
+                </Accordion>
             </Card>
         </Container>
     </>
     )
 }
+
+// {page.map((serviceRef) => {
+
+//     if (serviceRef.short_name !== '') {
+//         return (
+//             <div className='surgeon-card' key={serviceRef.id}>
+//                 <span id='surgeon-card-header'>{serviceRef.full_name}</span><span id='short_name'> - {serviceRef.short_name}</span>
+//                 <hr />
+//                 <p>{serviceRef.description}</p>
+//                 {/* Modal */}
+
+//                 {/* End Modal */}
+//             </div>
+//         )
+//     } else {
+//         return (<div className='surgeon-card' key={serviceRef.id}>
+//             <span id='surgeon-card-header'>{serviceRef.full_name}</span>
+//             <hr />
+//             <p>{serviceRef.description}</p>
+//             {/* Modal */}
+
+//             {/* End Modal */}
+//         </div>
+//         )
+//     }
+
+// })}

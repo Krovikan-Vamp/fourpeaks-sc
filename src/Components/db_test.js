@@ -52,7 +52,7 @@ export default function DbFetch() {
             {/* <span id='main-title-elm'>{pathRef[pathRef.length - 1].toLocaleUpperCase()}</span> */}
             <div id='related-small'>
                 <Nav.Link href={`/${page.parent_path}/${page.related_links[0]}`}>{`${page.related_links[0].charAt(0).toUpperCase()}${page.related_links[0].slice(1)}`}</Nav.Link>
-                <Nav.Link href={`/${page.parent_path}/${page.related_links[1]}`} disabled>{`${page.related_links[1].charAt(0).toUpperCase()}${page.related_links[1].slice(1)}`}</Nav.Link>
+                <Nav.Link href={`/patients/paperwork`}>Paperwork</Nav.Link>
                 <Nav.Link href={`/${page.parent_path}/${page.related_links[2]}`}>{`${page.related_links[2].charAt(0).toUpperCase()}${page.related_links[2].slice(1)}`}</Nav.Link>
                 <Nav.Link href={`/${page.parent_path}/${page.related_links[3]}`}>{`${page.related_links[3].charAt(0).toUpperCase()}${page.related_links[3].slice(1)}`}</Nav.Link>
             </div>
@@ -63,7 +63,7 @@ export default function DbFetch() {
                 <h5>Related Links</h5>
                 {/* <ol> */}
                 <Nav.Link href={`/${page.parent_path}/${page.related_links[0]}`}>{`${page.related_links[0].charAt(0).toUpperCase()}${page.related_links[0].slice(1)}`}</Nav.Link>
-                <Nav.Link href={`/${page.parent_path}/${page.related_links[1]}`} disabled>{`${page.related_links[1].charAt(0).toUpperCase()}${page.related_links[1].slice(1)}`}</Nav.Link>
+
                 <Nav.Link href={`/${page.parent_path}/${page.related_links[2]}`}>{`${page.related_links[2].charAt(0).toUpperCase()}${page.related_links[2].slice(1)}`}</Nav.Link>
                 <Nav.Link href={`/${page.parent_path}/${page.related_links[3]}`}>{`${page.related_links[3].charAt(0).toUpperCase()}${page.related_links[3].slice(1)}`}</Nav.Link>
                 {/* </ol> */}
