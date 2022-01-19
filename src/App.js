@@ -17,6 +17,8 @@ import Anesthesiologists from "./Components/Anesthesia.js";
 import ContactForm from "./Components/Contact.js";
 import Paperwork from './Components/Paperwork.js'
 import Testimonials from "./Components/Testimonials.js";
+import ClearanceForm from "./Components/clxForm.js";
+import PatientTable from './Components/Table.js'
 
 function App() {
   const [show, setShow] = useState(false)
@@ -54,6 +56,8 @@ function App() {
         <Route path='/patients/paperwork' element={<Paperwork />} />
         <Route path='/testimonials' element={<Testimonials />} />
         <Route path='/contact' element={<ContactForm />} />
+        <Route path='/staff/submit_user' element={<ClearanceForm />} />
+        <Route path='/staff/ptclx' element={<PatientTable />} />
         {/* Coming soon... */}
         {/* <Route path='/signup' element={<RegisterForm />} />
         <Route path='/secret' element={<LoginForm />} /> */}
