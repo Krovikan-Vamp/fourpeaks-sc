@@ -1,5 +1,6 @@
 *, html {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     scroll-behavior: smooth;
 }
 html {
@@ -273,7 +274,6 @@ span#paper-card {
     margin-top: 3em;
     /* padding-top: 2em; */
 }
-
 /* Media queries */
 @media screen and (max-width: 880px) {
     #content-left, #footer, #main-title-elm {
@@ -281,6 +281,7 @@ span#paper-card {
     }
     #related-small, #related-small a {
         display: inline-flex;
+        color: black;
         text-align: center;
         font-size: 17px;
         /* padding: auto; */

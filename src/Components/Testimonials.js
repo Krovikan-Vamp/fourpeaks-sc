@@ -103,11 +103,5 @@ export default function Testimonials() {
 
 
 
-
-        <div id='testimonial-container'>
-            <div className='testimonial-card'>
-                <h4 className='testimonial-header'></h4>
-            </div>
-        </div>
     </>);
 };

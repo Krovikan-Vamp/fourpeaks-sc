@@ -1,4 +1,4 @@
-import { Card, Button, CardGroup, Nav } from 'react-bootstrap'
+import { Card, CardGroup, Nav } from 'react-bootstrap'
 
 
 export default function CardWithPic() {

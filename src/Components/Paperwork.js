@@ -81,7 +81,7 @@ export default function Paperwork() {
                                             <div className='fw-bold'>{paper.name}</div>
                                             <span id='paper-card'>{paper.description}</span>
                                         </div>
-                                        <Badge variant='primary' id='link-pill' pill><a href={paper.link} target='_blank'>View</a></Badge>
+                                        <Badge variant='primary' id='link-pill' pill><a href={paper.link} target='_blank' rel='noreferrer'>View</a></Badge>
                                     </ListGroup.Item>
                                 )
                             })}
