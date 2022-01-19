@@ -15,9 +15,9 @@ export default function DbFetch() {
     pathRef.unshift('home')
     async function anon() {
         // setLoading(true)
-        console.log(`Trying to get doc: ${pathRef[pathRef.length - 1]}`)
+        // console.log(`Trying to get doc: ${pathRef[pathRef.length - 1]}`)
         const ref = await app.firestore().collection('pages').doc(pathRef[pathRef.length - 1]).get();
-        console.log(`Successfully got the "${ref.data().main_title}" page;`)
+        // console.log(`Successfully got the "${ref.data().main_title}" page;`)
         setPage(ref.data())
         setLoading(false)
     }
@@ -37,16 +37,16 @@ export default function DbFetch() {
             </div>)
 
     }
-    console.log(page)
+    // console.log(page)
 
     return (<>
         <Alert id='page-title' variant="light">
             {pathRef.map((i) => {
 
                 if (i !== pathRef[pathRef.length - 1]) {
-                    return <span id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
+                    return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
                 } else { // If it's the last element
-                    return <span id='main-title-elm'>{i.toLocaleUpperCase()}</span>
+                    return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()}</span>
                 }
             })}
             {/* <span id='main-title-elm'>{pathRef[pathRef.length - 1].toLocaleUpperCase()}</span> */}

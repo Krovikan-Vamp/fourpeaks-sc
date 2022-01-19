@@ -25,7 +25,7 @@ export default function Paperwork() {
     window.addEventListener('load', () => {
         fetchPage()
     });
-    console.log(ppw)
+    // console.log(ppw)
     if (loading) {
         return (
             <div id='spinner-id'>
@@ -42,9 +42,9 @@ export default function Paperwork() {
                 {pathRef.map((i) => {
 
                     if (i !== pathRef[pathRef.length - 1]) {
-                        return <span id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
+                        return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
                     } else { // If it's the last element
-                        return <span id='main-title-elm'>{i.toLocaleUpperCase()}</span>
+                        return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()}</span>
                     }
                 })}
                 {/* <span id='main-title-elm'>{pathRef[pathRef.length - 1].toLocaleUpperCase()}</span> */}
@@ -76,7 +76,7 @@ export default function Paperwork() {
                         <ListGroup as='ol' numbered>
                             {ppw.papers.map((paper) => {
                                 return (
-                                    <ListGroup.Item as='li' className='d-flex justify-content-between align-items-start'>
+                                    <ListGroup.Item as='li' key={paper.name} className='d-flex justify-content-between align-items-start'>
                                         <div id='paper-card' className='ms-2 me-auto'>
                                             <div className='fw-bold'>{paper.name}</div>
                                             <span id='paper-card'>{paper.description}</span>

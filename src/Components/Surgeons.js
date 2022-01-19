@@ -44,9 +44,9 @@ export default function Surgeons() {
             <Alert id='page-title' variant="light">
                 {pathRef.map((i) => {
                     if (i !== pathRef[pathRef.length - 1]) {
-                        return <span id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
+                        return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
                     } else { // If it's the last element
-                        return <span id='main-title-elm'>{i.toLocaleUpperCase()}</span>
+                        return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()}</span>
                     }
                 })}
                 <div id='related-small'>
@@ -70,7 +70,7 @@ export default function Surgeons() {
                 <Card className='content-right'>
                     <h4>Our Surgeons</h4>
                     {page.map((surgeonRef) => (
-                        <div className='surgeon-card' key={surgeonRef.surgeon.id}>
+                        <div className='surgeon-card' key={surgeonRef.surgeon.name}>
                             <div>
                                 <span id='surgeon-card-header'>{surgeonRef.surgeon.name}</span>
 

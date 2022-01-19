@@ -46,9 +46,9 @@ export default function Anesthesiologists() {
             {pathRef.map((i) => {
 
                 if (i !== pathRef[pathRef.length - 1]) {
-                    return <span id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
+                    return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
                 } else { // If it's the last element
-                    return <span id='main-title-elm'>{i.toLocaleUpperCase()}</span>
+                    return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()}</span>
                 }
             })}
             {/* <span id='main-title-elm'>{pathRef[pathRef.length - 1].toLocaleUpperCase()}</span> */}
@@ -76,7 +76,7 @@ export default function Anesthesiologists() {
                 {page.map((doc) => {
                     // console.log(doc);
                     return (
-                        <div key={doc.id}>
+                        <div key={doc.name}>
                             <div>{doc.name}</div>
                         </div>)
                 })}

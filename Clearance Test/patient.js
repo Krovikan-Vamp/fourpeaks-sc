@@ -1,4 +1,4 @@
-const patientSchema = {
+const patientSchema = new Schema({
     // name: String,
     // dob: Date,
     // dos: Date,
@@ -20,4 +20,4 @@ const patientSchema = {
     },
     notes: String,
     received: Boolean
-}
+})

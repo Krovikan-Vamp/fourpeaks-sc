@@ -46,9 +46,9 @@ export default function Services() {
             {pathRef.map((i) => {
 
                 if (i !== pathRef[pathRef.length - 1]) {
-                    return <span id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
+                    return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
                 } else { // If it's the last element
-                    return <span id='main-title-elm'>{i.toLocaleUpperCase()}</span>
+                    return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()}</span>
                 }
             })}
             <div id='related-small'>
@@ -74,7 +74,7 @@ export default function Services() {
                     {page.map((serv) => {
                         if (serv.short_name !== '') {
                             return (
-                                <Accordion.Item key={serv.id} eventKey={page.indexOf(serv)}>
+                                <Accordion.Item key={serv.full_name} eventKey={page.indexOf(serv)}>
                                     <Accordion.Header>{serv.full_name}</Accordion.Header>
                                     <Accordion.Body>
                                         <div className='service-subheader'>Also known as: {serv.short_name}</div>
@@ -84,7 +84,7 @@ export default function Services() {
                             )
                         } else {
                             return (
-                                <Accordion.Item eventKey={page.indexOf(serv)}>
+                                <Accordion.Item key={serv.full_name} eventKey={page.indexOf(serv)}>
                                     <Accordion.Header>{serv.full_name}</Accordion.Header>
                                     <Accordion.Body>{serv.description}</Accordion.Body>
                                 </Accordion.Item>
