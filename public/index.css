@@ -280,8 +280,10 @@ span#paper-card {
     background: inherit;
     border: none;
 }
-
-
+#clx-table {
+    text-align: center;    
+    vertical-align: middle;
+}
 
 
 /* Media queries */
