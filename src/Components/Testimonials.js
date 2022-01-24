@@ -5,8 +5,12 @@ import { app } from '../firebase.js'
 export default function Testimonials() {
     const [testimonials, setTestimonials] = useState([])
 
-    async function getTests() {
+    var pathRef = window.location.pathname;
+    pathRef = pathRef.split('/');
+    pathRef.shift();
+    pathRef.unshift('home')
 
+    async function getTests() {
         // setLoading(true);
         const dbRef = await app.firestore().collection('Testimonials').orderBy('date', 'desc')
         dbRef.onSnapshot((querySnapshot) => {
@@ -38,7 +42,13 @@ export default function Testimonials() {
 
     return (<>
         <Alert id='page-title' variant="light">
-
+            {pathRef.map((i) => {
+                if (i !== pathRef[pathRef.length - 1]) {
+                    return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()} &#8594; </span>
+                } else { // If it's the last element
+                    return <span key={i} id='main-title-elm'>{i.toLocaleUpperCase()}</span>
+                }
+            })}
             {/* <span id='main-title-elm'>{pathRef[pathRef.length - 1].toLocaleUpperCase()}</span> */}
             <div id='related-small'>
                 <Nav.Link href={`/about`}>About</Nav.Link>

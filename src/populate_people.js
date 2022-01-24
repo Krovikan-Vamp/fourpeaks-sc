@@ -125,12 +125,15 @@ function Review() {
     Testimonial.date = ogDate.substring(ogDate.length - 2, ogDate.length).concat(ogDate)
     Testimonial.comments = prompt(`Please input any patient comments: `);
 
-    console.log(Testimonial)
+    // console.log(Testimonial)
     putInDB(Testimonial)
 }
-// Review()
-Services()
+// while (true) {
+    Review()
+// }
+// Services()
 async function putInDB(info) {
+    console.log(`Adding ${JSON.stringify(info)}`)
     await db.collection(info.collection).doc().set(info)
     // console.log(`Added ${info.full_name} to ${info.collection}`)
 }
