@@ -14,7 +14,7 @@ import DbFetch from "./Components/db_test";
 import Surgeons from "./Components/Surgeons.js";
 import Services from "./Components/Services.js";
 import Anesthesiologists from "./Components/Anesthesia.js";
-import ContactForm from "./Components/Contact.js";
+import Contact from "./Components/Contact.jsx";
 import Paperwork from './Components/Paperwork.js'
 import Testimonials from "./Components/Testimonials.js";
 import ClearanceForm from "./Components/clxForm.js";
@@ -55,7 +55,7 @@ function App() {
         {/* Patients */}
         <Route path='/patients/paperwork' element={<Paperwork />} />
         <Route path='/testimonials' element={<Testimonials />} />
-        <Route path='/contact' element={<ContactForm />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path='/staff/submit_user' element={<ClearanceForm />} />
         <Route path='/staff/ptclx' element={<PatientTable />} />
         {/* Coming soon... */}
