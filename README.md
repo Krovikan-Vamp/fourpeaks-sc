@@ -15,3 +15,11 @@ All dependencies can be seen in the [package.json](https://github.com/Bwnr-Pwnr/
   - Cloud Messaging
   - Serverless hosting
   - Domain acquisition
+
+### Installation
+
+To install this repository on a new machine...
+
+1. Run `git clone https://github.com/Bwnr-Pwnr/fourpeaks-sc.git`
+2. Install node_modules *(not included with repo)* `npm install`
+3. Start the local service through react `npm start`
