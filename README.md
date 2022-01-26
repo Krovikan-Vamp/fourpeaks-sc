@@ -21,5 +21,6 @@ All dependencies can be seen in the [package.json](https://github.com/Bwnr-Pwnr/
 To install this repository on a new machine...
 
 1. Run `git clone https://github.com/Bwnr-Pwnr/fourpeaks-sc.git`
-2. Install node_modules *(not included with repo)* `npm install`
-3. Start the local service through react `npm start`
+2. Change working directory `cd fourpeaks-sc`
+3. Install node_modules *(not included with repo)* `npm install`
+4. Start the local service through react `npm start`
