@@ -5,10 +5,6 @@ import { useState, useEffect } from 'react'
 export default function PatientTable() {
     const [patients, setPatients] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [show, setShow] = useState(false)
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
 
     async function getPatients() {

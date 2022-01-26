@@ -46,7 +46,7 @@ function App() {
       {/* ROUTES START */}
       <Routes>
         <Route path='/' element={<><CarouselBanner /><HomeCards /><OSCBanner /></>} />
-        {/* About */}
+        {/* Informational paths */}
         <Route path='/about' element={<DbFetch />} />
         <Route path='/about/surgeons' element={<Surgeons />} />
         <Route path='/about/services' element={<Services />} />
@@ -56,6 +56,8 @@ function App() {
         <Route path='/patients/paperwork' element={<Paperwork />} />
         <Route path='/testimonials' element={<Testimonials />} />
         <Route path='/contact' element={<ContactForm />} />
+
+        {/* Staff stuff */}
         <Route path='/staff/submit_user' element={<ClearanceForm />} />
         <Route path='/staff/ptclx' element={<PatientTable />} />
         {/* Coming soon... */}
