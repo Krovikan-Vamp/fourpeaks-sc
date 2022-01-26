@@ -17,7 +17,7 @@ export default function Testimonials() {
             const items = [];
             querySnapshot.forEach((doc) => {
                 items.push(doc.data());
-                // console.log(doc)
+                console.log(doc.data())
             });
             setTestimonials(items);
             // setLoading(false)
@@ -98,20 +98,5 @@ export default function Testimonials() {
                 </div>
             </Card>
         </Container>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </>);
 };
