@@ -1,4 +1,4 @@
-import { Card, CardGroup } from 'react-bootstrap'
+import { Card, CardGroup, Table } from 'react-bootstrap'
 
 const Contact = () => {
 
@@ -15,7 +15,27 @@ const Contact = () => {
             <Card.Header>Visit Us</Card.Header>
             <img id='phone-svg' src='Images/location.svg' alt="Visit Us" />
             <Card.Body>
-                <div className='contact-button' id='contact-right'><span><span><span><a target='_blank' href='http://www.google.com/search?q=Four+Peaks+Surgery+Center'>Address: 9425 West Bell Road, Sun City, Arizona 85351</a></span></span></span></div>
+                <div className='contact-button' id='contact-right'><span><span><span><a target='_blank' rel='noreferrer' href='http://www.google.com/search?q=Four+Peaks+Surgery+Center'>Address: 9425 West Bell Road, Sun City, Arizona 85351</a></span></span></span></div>
+                <Table id='schedule-table' striped bordered hover responsive>
+                    <thead>
+                        <tr>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>8:30 AM - 5:00 PM</td>
+                            <td>8:30 AM - 5:00 PM</td>
+                            <td>8:30 AM - 5:00 PM</td>
+                            <td>8:30 AM - 5:00 PM</td>
+                            <td>8:30 AM - 5:00 PM</td>
+                        </tr>
+                    </tbody>
+                </Table>
             </Card.Body>
         </Card>
     </CardGroup>)

@@ -53,10 +53,10 @@ export default function Anesthesiologists() {
             })}
             {/* <span id='main-title-elm'>{pathRef[pathRef.length - 1].toLocaleUpperCase()}</span> */}
             <div id='related-small'>
-                <Nav.Link href=''></Nav.Link>
-                <Nav.Link href='' disabled></Nav.Link>
-                <Nav.Link href=''></Nav.Link>
-                <Nav.Link href=''></Nav.Link>
+                <Nav.Link href='/about'>About</Nav.Link>
+                {/* <Nav.Link href='' disabled></Nav.Link> */}
+                <Nav.Link href='/about/surgeons'>Surgeons</Nav.Link>
+                <Nav.Link href='/about/services'>Services</Nav.Link>
             </div>
         </Alert>
         <Container id='content-page' fluid>
@@ -66,7 +66,7 @@ export default function Anesthesiologists() {
                 {/* <ol> */}
                 <Nav.Link href={`/about`}>About</Nav.Link>
                 <Nav.Link href={`/about/surgeons`}>Surgeons</Nav.Link>
-                <Nav.Link href={`/about/staff`} disabled>Staff</Nav.Link>
+                {/* <Nav.Link href={`/about/staff`} disabled>Staff</Nav.Link> */}
                 <Nav.Link href={`/about/services`}>Services</Nav.Link>
             </Card>
 

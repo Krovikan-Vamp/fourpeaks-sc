@@ -85,7 +85,16 @@ export default function Paperwork() {
                                     </ListGroup.Item>
                                 )
                             })}
+                            <hr />
+                            <ListGroup.Item as='li' className='d-flex justify-content-between align-items-start'>
+                                <div id='paper-card' className='ms-2 me-auto'>
+                                    <div className='fw-bold'>Save All</div>
+                                    <span id='paper-card'>Save all forms to your device</span>
+                                </div>
+                                <Badge variant='success' id='link-pill' pill><a href='https://firebasestorage.googleapis.com/v0/b/fourpeaks-sc.appspot.com/o/All%20Check%20In%20Forms.pdf?alt=media&token=0ac380a9-4c83-4ce7-96d2-e5b4c48fa6a6' target='_blank' rel='noreferrer'>Save All</a></Badge>
+                            </ListGroup.Item>
                         </ListGroup>
+
                     </Card.Body>
                 </Card>
             </Container>

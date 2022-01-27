@@ -9,7 +9,7 @@ export default function Footer() {
 
                 </Card>
                 <Card className='thirds' id='logo-holder'>
-                    <img alt='Four Peaks Surgery Center' src='/Images/4p_logo.png' />
+                    <img alt='Four Peaks Surgery Center' id='fp-logo' src='/Images/4p_logo.png' />
                 </Card>
                 <Card id='iframe-div' className='thirds'>
                     <span id='third-title'>Location</span>
@@ -17,7 +17,7 @@ export default function Footer() {
                 </Card>
             </CardGroup>
             <Card id='footer'>
-                <Card.Text id='center'>Four Peaks Surgery Center 2021 &#169;<br />Designed and coded by <abbr title='zaxdev59@gmail.com'>Zackery Hatch</abbr></Card.Text>
+                <Card.Text id='center'>Four Peaks Surgery Center 2021 &#169;<br />Designed and created by <abbr title='zaxdev59@gmail.com'>Zackery Hatch</abbr></Card.Text>
             </Card>
         </footer>
     )
