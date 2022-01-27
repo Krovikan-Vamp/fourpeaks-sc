@@ -24,3 +24,4 @@ To install this repository on a new machine...
 2. Change working directory `cd fourpeaks-sc`
 3. Install node_modules *(not included with repo)* `npm install`
 4. Start the local service through react `npm start`
+5. Contact the project manager for service-account keys and install them
