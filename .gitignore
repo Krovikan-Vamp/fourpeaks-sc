@@ -11,9 +11,12 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 #firebase credentials
 src/firebase
-src/firebase-config
+src/firebase-config.js
 src/serviceAccount
-*.json
+src/serviceAccount.json
+firebase.json
+.firebaserc
+
 # Runtime data
 pids
 *.pid
