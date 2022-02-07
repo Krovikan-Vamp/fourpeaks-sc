@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 align="center">Welcome to fourpeaks-sc 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
@@ -8,10 +9,17 @@
     <img alt="Twitter: Bwnr-Pwnr" src="https://img.shields.io/twitter/follow/Bwnr-Pwnr.svg?style=social" />
   </a>
 </p>
+=======
+# Four Peaks Surgery Center `v1.4.13`
+>>>>>>> cbd1c7269bf534db09c19228a75fc09cd87de87f
 
 > Made to contain the information needed for patients attending Four Peaks Surgery Center
 
+<<<<<<< HEAD
 ## Install
+=======
+## Dependencies
+>>>>>>> cbd1c7269bf534db09c19228a75fc09cd87de87f
 
 ```sh
 npm install
@@ -19,9 +27,13 @@ npm install
 
 ## Usage
 
+<<<<<<< HEAD
 ```sh
 npm run start
 ```
+=======
+## Installation
+>>>>>>> cbd1c7269bf534db09c19228a75fc09cd87de87f
 
 ## Run tests
 
