@@ -1,12 +1,18 @@
-# Four Peaks Surgery Center Notes
+<details open="open">
+<summary>Table of Contents</summary>
 
-## Domain Name
+- [About](#about)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Usage](#usage)
+    - [Cookiecutter template](#cookiecutter-template)
+    - [Manual setup](#manual-setup)
+    - [Variables reference](#variables-reference)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Support](#support)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-* Please make domain: "fourpeakssurgerycenter.com"
-    - $12/year
-
-* About Us
-    - Surgeons (10)
-    - Anesthesia 
-    - Surgical services
-    - Pre-registration forms
+</details>

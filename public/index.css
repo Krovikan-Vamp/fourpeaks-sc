@@ -401,17 +401,10 @@ margin-top: 3em;
 /* padding-top: 2em; */
 }
 /* Patient Clearance tables... */
-.table-input {
-/* all: initial; */
-background: inherit;
-border: none;
+#suggestion-table {
+    width: 80vw;
+    margin: auto
 }
-#clx-table {
-text-align: center;    
-vertical-align: middle;
-}
-
-
 /* Media queries */
 @media screen and (max-width: 880px) {
 #content-left, #footer, #main-title-elm {
