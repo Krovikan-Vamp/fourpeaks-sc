@@ -403,7 +403,12 @@ margin-top: 3em;
 /* Patient Clearance tables... */
 #suggestion-table {
     width: 80vw;
-    margin: auto
+    margin: auto;
+    text-align: center;
+}
+.al-r {
+    text-align: left;
+    font-weight: 800;
 }
 /* Media queries */
 @media screen and (max-width: 880px) {

@@ -8,7 +8,7 @@ const Suggestions: Object = () => {
 
 
     async function getPatients() {
-        let collection_ref = await app.firestore().collection('Auto Suggestions')
+        let collection_ref = app.firestore().collection('Auto Suggestions').orderBy('dr', 'asc')
         collection_ref.onSnapshot((qs) => {
             const items = [];
             qs.forEach((doc) => {
@@ -21,7 +21,7 @@ const Suggestions: Object = () => {
     useEffect(() => {
         getPatients()
         console.log(patients)
-    }, [])
+    })
     if (loading) {
         return (
             <>
@@ -47,7 +47,7 @@ const Suggestions: Object = () => {
 
                     return (
                         <tr>
-                            <td>{doc.dr}</td>
+                            <td className='al-r'>{doc.dr}</td>
                             <td>{doc.phone}</td>
                             <td>{doc.fax}</td>
                         </tr>
