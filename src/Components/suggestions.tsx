@@ -8,7 +8,7 @@ const Suggestions: Object = () => {
 
 
     async function getPatients() {
-        let collection_ref = await app.firestore().collection('Auto Suggestions')
+        let collection_ref = await app.firestore().collection('Auto Suggestions').orderBy('drType', 'asc')
         collection_ref.onSnapshot((qs) => {
             const items = [];
             qs.forEach((doc) => {
@@ -47,9 +47,9 @@ const Suggestions: Object = () => {
 
                     return (
                         <tr>
-                            <td>{doc.dr}</td>
-                            <td>{doc.phone}</td>
-                            <td>{doc.fax}</td>
+                            <td>{doc.drType.map((char) => { char = String.fromCharCode(char - 25); console.log(char); return char })}: {doc.dr.map((char) => { char = String.fromCharCode(char - 25); console.log(char); return char })}</td>
+                            <td>{doc.phone.map((char) => { char = String.fromCharCode(char - 25); console.log(char); return char })}</td>
+                            <td>{doc.fax.map((char) => { char = String.fromCharCode(char - 25); console.log(char); return char })}</td>
                         </tr>
                     )
                 })}
