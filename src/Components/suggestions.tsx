@@ -21,7 +21,7 @@ const Suggestions: Object = () => {
     useEffect(() => {
         getPatients()
         console.log(patients)
-    }, [])
+    })
     if (loading) {
         return (
             <>
