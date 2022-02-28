@@ -1,6 +1,6 @@
-import { Table, Spinner } from 'react-bootstrap'
-import { useState, useEffect } from 'react'
-import { app } from '../firebase.js'
+import { Table, Spinner } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { app } from '../firebase'
 
 const Suggestions: Object = () => {
     const [patients, setPatients] = useState([]);
@@ -21,7 +21,7 @@ const Suggestions: Object = () => {
     useEffect(() => {
         getPatients()
         console.log(patients)
-    })
+    }, [])
     if (loading) {
         return (
             <>
@@ -43,20 +43,18 @@ const Suggestions: Object = () => {
             </thead>
             <tbody>
                 {patients.map((doc) => {
-                    console.log(doc)
-
                     return (
                         <tr>
-                            <td>{doc.drType.map((char) => { char = String.fromCharCode(char - 25); console.log(char); return char })}: {doc.dr.map((char) => { char = String.fromCharCode(char - 25); console.log(char); return char })}</td>
-                            <td>{doc.phone.map((char) => { char = String.fromCharCode(char - 25); console.log(char); return char })}</td>
-                            <td>{doc.fax.map((char) => { char = String.fromCharCode(char - 25); console.log(char); return char })}</td>
+                            <td>{doc.drType.map((char: number) => { let new_char: string = String.fromCharCode(char - 25); return new_char })}: {doc.dr.map((char: number) => { let new_char: string = String.fromCharCode(char - 25); return new_char })}</td>
+                            <td>{doc.phone.map((char: number) => { let new_char: string = String.fromCharCode(char - 25); return new_char })}</td>
+                            <td>{doc.fax.map((char: number) => { let new_char: string = String.fromCharCode(char - 25); return new_char })}</td>
                         </tr>
                     )
                 })}
+                <tr>
+                    <td colSpan={3}>Total suggestions collected: {patients.length}</td>
+                </tr>
             </tbody>
-            <tr>
-                <td colSpan={3}>Total suggestions collected: {patients.length}</td>
-            </tr>
         </Table>
     )
 }

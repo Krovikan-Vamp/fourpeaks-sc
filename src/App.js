@@ -9,7 +9,7 @@ import CarouselBanner from "./Components/Carousel.js";
 import OSCBanner from "./Components/osc-banner.js";
 import HomeCards from './Components/HomeCards.js';
 // import RegisterForm from "./Components/RegisterForm.js";
-// import LoginForm from './Components/LoginFile.js'
+import LoginPage from './Components/LoginFile.tsx'
 import DbFetch from "./Components/db_test";
 import Surgeons from "./Components/Surgeons.js";
 import Services from "./Components/Services.js";
@@ -60,8 +60,8 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         {/* Coming soon... */}
         <Route path='/stats' element={<Suggestions />} />
-        {/* <Route path='/signup' element={<RegisterForm />} />
-        <Route path='/secret' element={<LoginForm />} /> */}
+        <Route path='/secret' element={<LoginPage />} />
+        {/* <Route path='/signup' element={<RegisterForm />} />*/}
       </Routes>
       <Footer />
     </Router>

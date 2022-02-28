@@ -404,7 +404,7 @@ margin-top: 3em;
 #suggestion-table {
     width: 80vw;
     margin: auto;
-    text-align: center;
+    /* text-align: center; */
 }
 .al-r {
     text-align: left;
