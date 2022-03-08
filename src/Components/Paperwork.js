@@ -86,12 +86,27 @@ export default function Paperwork() {
                                 )
                             })}
                             <hr />
+                            <h5>Other</h5>
                             <ListGroup.Item as='li' className='d-flex justify-content-between align-items-start'>
                                 <div id='paper-card' className='ms-2 me-auto'>
                                     <div className='fw-bold'>Save All</div>
                                     <span id='paper-card'>Save all forms to your device</span>
                                 </div>
                                 <Badge variant='success' id='link-pill' pill><a href='https://firebasestorage.googleapis.com/v0/b/fourpeaks-sc.appspot.com/o/All%20Check%20In%20Forms.pdf?alt=media&token=0ac380a9-4c83-4ce7-96d2-e5b4c48fa6a6' target='_blank' rel='noreferrer'>Save All</a></Badge>
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li' className='d-flex justify-content-between align-items-start'>
+                                <div id='paper-card' className='ms-2 me-auto'>
+                                    <div className='fw-bold'>Physician Ownership Declaration</div>
+                                    <span id='paper-card'>Your physician may be an owner of this facility.</span>
+                                </div>
+                                <Badge variant='success' id='link-pill' pill><a href='https://firebasestorage.googleapis.com/v0/b/fourpeaks-sc.appspot.com/o/Patient%20Physician%20Ownership%20disclosure.pdf?alt=media&token=ba7a5c3b-72b5-480f-80bc-582063104040' target='_blank' rel='noreferrer'>View</a></Badge>
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li' className='d-flex justify-content-between align-items-start'>
+                                <div id='paper-card' className='ms-2 me-auto'>
+                                    <div className='fw-bold'>No Surprises Act</div>
+                                    <span id='paper-card'>Federal billing information regarding the "No Surprises Act".</span>
+                                </div>
+                                <Badge variant='success' id='link-pill' pill><a href='https://firebasestorage.googleapis.com/v0/b/fourpeaks-sc.appspot.com/o/No%20Surprises%20Act%20Implementation.pdf?alt=media&token=801b1f2f-4ab2-42ab-a806-ac65c1b0493e' target='_blank' rel='noreferrer'>View</a></Badge>
                             </ListGroup.Item>
                         </ListGroup>
 
