@@ -18,6 +18,7 @@ import Contact from "./Components/Contact.jsx";
 import Paperwork from './Components/Paperwork.js'
 import Testimonials from "./Components/Testimonials.js";
 import Suggestions from "./Components/suggestions.tsx";
+import Cookies from './Components/cks.js';
 
 function App() {
   const [show, setShow] = useState(false)
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <Router>
+      <Cookies />
       <Alert id='covid-banner' variant='danger'>
         <Button id='modal-button' variant='danger' onClick={handleShow}>COVID-19</Button>
         <Modal show={show} onHide={handleClose}>
