@@ -3,12 +3,13 @@ import { v4 as uid } from 'uuid';
 
 export default function tracker() {
     // console.log(Object.keys(sessionStorage))
-    function getIP() {
-        fetch(`https://api.ipify.org?format=json`)
+    async function getIP() {
+        await fetch(`https://api.ipify.org?format=json`)
             .then(res => res.json())
             .then((data) => {
                 sessionStorage.setItem('UserIP', data.ip)
             })
+            .catch(() => console.log(`No data provided...`))
     }
     if (!sessionStorage.UserProviderID) sessionStorage.setItem('UserProviderID', uid())
     if (!sessionStorage.CollectedPaths) sessionStorage.setItem('CollectedPaths', '')
