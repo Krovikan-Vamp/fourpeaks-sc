@@ -16,7 +16,7 @@ export default function navbar() {
                             <NavDropdown.Item href="/about/services">Services</NavDropdown.Item>
                             <NavDropdown.Item href="/testimonials">Testimonials</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4" disabled>One Medical Passport</NavDropdown.Item>
+                            <NavDropdown.Item href="http://www.onemedicalpassport.com/FID/1203" target="_blank">One Medical Passport</NavDropdown.Item>
                         </NavDropdown>
                         {/* End of the dropdown  */}
                         <Nav.Link href="/about">About</Nav.Link>
