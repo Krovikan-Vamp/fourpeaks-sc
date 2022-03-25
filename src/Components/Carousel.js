@@ -8,7 +8,7 @@ export default function CarouselBanner() {
                 <img
                     className="d-block w-100"
                     src="./Images/AUUA-Banner.jpg"
-                    alt="First slide"
+                    alt="Academic Urology"
                 />
                 {/* <Carousel.Caption>
                     <h3>Meet the Surgeons</h3>

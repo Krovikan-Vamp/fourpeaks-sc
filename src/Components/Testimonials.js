@@ -17,7 +17,6 @@ export default function Testimonials() {
             const items = [];
             querySnapshot.forEach((doc) => {
                 items.push(doc.data());
-                console.log(doc.data())
             });
             setTestimonials(items);
             // setLoading(false)
@@ -38,7 +37,6 @@ export default function Testimonials() {
             }, 0)
         })
     }
-    console.log(uniqueOccs)
 
     return (<>
         <Alert id='page-title' variant="light">
