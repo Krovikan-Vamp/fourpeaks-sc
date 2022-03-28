@@ -591,3 +591,16 @@ span#paper-card {
 #login-button:hover {
     cursor:default;
 }
+
+#homepage-button {
+    float: right;
+}
+
+#homepage-button::before {
+    content: "Must be logged in";
+    display: none;
+}
+
+#homepage-button:hover::before {
+    display: block;
+}

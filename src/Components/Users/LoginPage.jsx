@@ -30,8 +30,7 @@ async function login_firebase(e) {
                 try {
                     const stringInfo = JSON.stringify(userCredential)
                     sessionStorage.setItem('userCredential', stringInfo);
-                    document.cookie = `name=userCredential;${stringInfo}`;
-                    setCookie('userCredential', stringInfo, 30)
+                    setCookie('userCredential', stringInfo, 14)
                     window.location.pathname = '/users/landing';
                 } catch (QuotaExceededError) {
                     alert('You need to allow Session Storage to log in')
@@ -42,7 +41,7 @@ async function login_firebase(e) {
                 // window.location.pathname = '/'
             })
             .catch((error) => {
-                error.code.indexOf('wrong-password') !== -1 ? alert('The password you entered is incorrect!') : alert(error.code)
+                error.code.indexOf('wrong-password') !== -1 ? alert('The password you entered is incorrect!') : alert(error.code);
             });
 
     } else if (!isUser) {
@@ -82,7 +81,7 @@ async function login_firebase(e) {
 
 
 let LoginForm = () => {
-
+    // "/users/login"
     return (
         <Form onSubmit={login_firebase} id="login_form">
             <h3 id="form-header">Login</h3>
@@ -101,6 +100,9 @@ let LoginForm = () => {
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
+            </Button>
+            <Button href='/users/landing' id='homepage-button' variant="primary" type="submit">
+                User Home Page
             </Button>
         </Form>
     )

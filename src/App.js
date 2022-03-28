@@ -15,7 +15,7 @@ import Anesthesiologists from "./Components/Anesthesia.js";
 import Contact from "./Components/Contact.jsx";
 import Paperwork from './Components/Paperwork.js'
 import Testimonials from "./Components/Testimonials.js";
-import Suggestions from "./Components/Users/suggestions.tsx";
+import Suggestions from "./Components/Users/suggestions.jsx";
 import Cookies from './Components/cks.js';
 import {LoginForm} from './Components/Users/LoginPage.jsx';
 import { LandingPage } from "./Components/Users/LandingPage.jsx";
