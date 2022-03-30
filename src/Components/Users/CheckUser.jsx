@@ -15,7 +15,6 @@ const CheckUser = () => {
         return "";
       }
     const userCookie = getCookie('userCredential');
-    console.log(userCookie);
     const userCredential = sessionStorage.getItem('userCredential');
     if (userCredential !== null || userCookie.length > 50) {
         return null;

@@ -28,7 +28,7 @@ async function login_firebase(e) {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 try {
-                    const stringInfo = JSON.stringify(userCredential)
+                    const stringInfo = JSON.stringify(userCredential);
                     sessionStorage.setItem('userCredential', stringInfo);
                     setCookie('userCredential', stringInfo, 14)
                     window.location.pathname = '/users/landing';

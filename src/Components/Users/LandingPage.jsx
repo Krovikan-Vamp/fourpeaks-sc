@@ -1,4 +1,4 @@
-import { Nav } from 'react-bootstrap';
+import { Nav, NavDropdown, Button } from 'react-bootstrap';
 
 function logout() {
     sessionStorage.removeItem('userCredential')
@@ -24,7 +24,7 @@ const LandingPage = () => {
     const userInfo = JSON.parse(userCredential).user;
 
     return (<div id="landing-page">
-        <h4>Welcome, {userInfo.email}!<button id='logout' onClick={logout}>Log out</button></h4>
+        <h4 id='welcome-user'>Welcome, {userInfo.email}!<Button id='logout' onClick={logout}>Log out</Button></h4>
         <Nav variant="pills" id='landing-links' className='flex-column'>
             <Nav.Item>
                 <Nav.Link href="/users/info/stats">Physician Phone and Fax Numbers</Nav.Link>
@@ -33,9 +33,15 @@ const LandingPage = () => {
                 <Nav.Link href="/users/info/analytics">Analytics</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="disabled" disabled>
-                    Disabled
-                </Nav.Link>
+                <Nav.Link href="/users/admin/users">Manage Users</Nav.Link>
+            </Nav.Item>
+            <hr />
+            <Nav.Item>
+                <NavDropdown id='landing-dropper' title="Change Patient Information">
+                    <NavDropdown.Item href="/admin/paperwork">Paperwork</NavDropdown.Item>
+                    <NavDropdown.Item href="/admin/services">Services</NavDropdown.Item>
+                    <NavDropdown.Item href="/admin/testimonials">Testimonials</NavDropdown.Item>
+                </NavDropdown>
             </Nav.Item>
         </Nav>
     </div>)
@@ -43,4 +49,4 @@ const LandingPage = () => {
 
 }
 
-export { LandingPage };
+export { LandingPage, getCookie, setCookie };
