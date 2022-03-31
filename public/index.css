@@ -624,3 +624,14 @@ span#paper-card {
     max-width: 80%;
     /* width: 80%; */
 }
+
+.is-hidden {
+    display: none;
+}
+
+#admin-appbar {
+    width: 80%;
+    margin: 0.75em auto;
+    border: 2px solid black;
+    border-radius: 10px;
+}

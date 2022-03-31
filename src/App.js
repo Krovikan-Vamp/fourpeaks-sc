@@ -21,6 +21,7 @@ import {LoginForm} from './Components/Users/LoginPage.jsx';
 import { LandingPage } from "./Components/Users/LandingPage.jsx";
 import Collections from './Components/Users/Collections.jsx'
 import { CheckUser } from "./Components/Users/CheckUser.jsx";
+import {AdminAppBar} from "./Components/Users/AdminAppbar.jsx";
 
 function App() {
   const [show, setShow] = useState(false)
@@ -64,10 +65,10 @@ function App() {
         <Route path='/users/landing' element={<><CheckUser /><LandingPage /></>} />
         
         {/* Staff Information */}
-        <Route path='/users/info/stats' element={<><CheckUser /><Suggestions /></>} />
+        <Route path='/users/info/stats' element={<><CheckUser /><AdminAppBar /><Suggestions /></>} />
 
         {/* For Zack */}
-        <Route path='/users/info/analytics' element={<><CheckUser /><Collections /></>} />
+        <Route path='/users/info/analytics' element={<><CheckUser /><AdminAppBar /><Collections /></>} />
       </Routes>
       <Footer />
     </Router>

@@ -428,12 +428,6 @@ footer .card {
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-
-
-
-
-
 /* Paperwork */
 #link-pill a {
     color: white;
@@ -568,13 +562,15 @@ span#paper-card {
     border-radius: 20px;
     border: 2px solid gray;
 }
+
 #landing-links a {
     width: 100%;
     text-align: center;
 }
 
 #logout {
-    float: right;  /* "display: block" is interpreted */
+    float: right;
+    /* "display: block" is interpreted */
     margin-right: 15px;
     border-radius: 20px;
 }
@@ -588,8 +584,9 @@ span#paper-card {
     height: 20px;
     cursor: pointer;
 }
+
 #login-button:hover {
-    cursor:default;
+    cursor: default;
 }
 
 #homepage-button {
@@ -603,4 +600,38 @@ span#paper-card {
 
 #homepage-button:hover::before {
     display: block;
+}
+
+#landing-links {
+    width: 60vw;
+    min-width: 316px;
+    margin: 2em auto;
+}
+
+#welcome-user {
+    width: 50vw;
+    min-width: 316px;
+    margin: auto;
+}
+
+#site-info-links {
+    list-style-type: none;
+}
+
+#landing-dropper {
+    padding: 1em;
+    margin: 0.5em auto;
+    max-width: 80%;
+    /* width: 80%; */
+}
+
+.is-hidden {
+    display: none;
+}
+
+#admin-appbar {
+    width: 80%;
+    margin: 0.75em auto;
+    border: 2px solid black;
+    border-radius: 10px;
 }
