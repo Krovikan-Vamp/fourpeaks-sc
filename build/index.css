@@ -593,15 +593,6 @@ span#paper-card {
     float: right;
 }
 
-#homepage-button::before {
-    content: "Must be logged in";
-    display: none;
-}
-
-#homepage-button:hover::before {
-    display: block;
-}
-
 #landing-links {
     width: 60vw;
     min-width: 316px;
