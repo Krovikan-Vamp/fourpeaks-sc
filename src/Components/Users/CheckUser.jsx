@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 const CheckUser = () => {
     function getCookie(cname) {
         let name = cname + "=";
@@ -12,14 +14,14 @@ const CheckUser = () => {
             return c.substring(name.length, c.length);
           }
         }
-        return "";
+        return undefined;
       }
     const userCookie = getCookie('userCredential');
     const userCredential = sessionStorage.getItem('userCredential');
-    if (userCredential !== null || userCookie.length > 50) {
+    if (userCredential !== null && userCookie !== undefined) {
         return null;
     } else {
-        window.location.pathname = '/'
+        window.location.pathname = '/users/login'
     }
 }
 export { CheckUser }

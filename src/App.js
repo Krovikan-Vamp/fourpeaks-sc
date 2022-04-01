@@ -17,11 +17,11 @@ import Paperwork from './Components/Paperwork.js'
 import Testimonials from "./Components/Testimonials.js";
 import Suggestions from "./Components/Users/suggestions.jsx";
 import Cookies from './Components/cks.js';
-import {LoginForm} from './Components/Users/LoginPage.jsx';
+import { LoginForm } from './Components/Users/LoginPage.jsx';
 import { LandingPage } from "./Components/Users/LandingPage.jsx";
 import Collections from './Components/Users/Collections.jsx'
 import { CheckUser } from "./Components/Users/CheckUser.jsx";
-import {AdminAppBar} from "./Components/Users/AdminAppbar.jsx";
+import { AdminAppBar } from "./Components/Users/AdminAppbar.jsx";
 
 function App() {
   const [show, setShow] = useState(false)
@@ -49,7 +49,7 @@ function App() {
 
       {/* ROUTES START */}
       <Routes>
-        <Route path='/' element={<><CarouselBanner /><HomeCards /><OSCBanner /></>} />
+        <Route index path='/' element={<><CarouselBanner /><HomeCards /><OSCBanner /></>} />
         {/* Informational paths */}
         <Route path='/about' element={<DbFetch />} />
         <Route path='/about/surgeons' element={<Surgeons />} />
@@ -61,14 +61,15 @@ function App() {
 
         {/* Staff stuff */}
         {/* <CheckUser /> */}
-        <Route path='/users/login' element={<LoginForm />} />
-        <Route path='/users/landing' element={<><CheckUser /><LandingPage /></>} />
-        
-        {/* Staff Information */}
-        <Route path='/users/info/stats' element={<><CheckUser /><AdminAppBar /><Suggestions /></>} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/users' element={<AdminAppBar />}>
+          {/* All Users */}
+          <Route path='landing' element={<LandingPage />} />
+          <Route path='info/stats' element={<Suggestions />} />
 
-        {/* For Zack */}
-        <Route path='/users/info/analytics' element={<><CheckUser /><AdminAppBar /><Collections /></>} />
+          {/* For Zack */}
+          <Route path='info/analytics' element={<Collections />} />
+        </Route>
       </Routes>
       <Footer />
     </Router>

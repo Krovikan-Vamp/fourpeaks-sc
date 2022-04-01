@@ -1,11 +1,6 @@
 import { Nav, NavDropdown, Button } from 'react-bootstrap';
 
-function logout() {
-    sessionStorage.removeItem('userCredential')
-    // Delete the cookie somehow
-    setCookie('userCredential', '', 0)
-    window.location.reload()
-}
+
 
 // Use this down the road when you feel like it
 function getCookie(name) {
@@ -24,7 +19,7 @@ const LandingPage = () => {
     const userInfo = JSON.parse(userCredential).user;
 
     return (<div id="landing-page">
-        <h4 id='welcome-user'>Welcome, {userInfo.email}!<Button id='logout' onClick={logout}>Log out</Button></h4>
+        <h4 id='welcome-user'>Welcome, {userInfo.email}!</h4>
         <Nav variant="pills" id='landing-links' className='flex-column'>
             <Nav.Item>
                 <Nav.Link href="/users/info/stats">Physician Phone and Fax Numbers</Nav.Link>

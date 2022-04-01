@@ -1,12 +1,8 @@
-import { Form, Button } from 'react-bootstrap';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { Alert, Form, Button } from 'react-bootstrap';
+import { getAuth, signInWithEmailAndPassword, sendEmailVerification, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { getCookie, setCookie } from './LandingPage';
 
-function setCookie(cname, cvalue, exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
+let spanInfo = null;
 
 async function login_firebase(e) {
     e.preventDefault(); // Prevent page reload
@@ -27,21 +23,29 @@ async function login_firebase(e) {
     if (isUser) {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                console.log(userCredential)  
+                if (!userCredential.user.emailVerified) {
+                    getCookie('verificationEmail') === undefined ? sendEmailVerification(auth.currentUser) : document.querySelector('#spanInfo').textContent = 'Email not verified, check your email.';
+                    setCookie('verificationEmail', new Date().getTime(), 1)
+
+                    document.querySelector('#spanInfo').classList.remove("is-hidden")
+                    return false;
+                } else {
+                    // alert('Please check your email for verification');
+                }
+
+
                 try {
                     const stringInfo = JSON.stringify(userCredential);
                     sessionStorage.setItem('userCredential', stringInfo);
-                    setCookie('userCredential', stringInfo, 14)
+                    setCookie('userCredential', stringInfo, 14);
                     window.location.pathname = '/users/landing';
                 } catch (QuotaExceededError) {
                     alert('You need to allow Session Storage to log in')
                 }
-                finally {
-                    // window.location.pathname = '/'
-                }
-                // window.location.pathname = '/'
             })
             .catch((error) => {
-                error.code.indexOf('wrong-password') !== -1 ? alert('The password you entered is incorrect!') : alert(error.code);
+                error.code.indexOf('wrong-password') !== -1 ? document.querySelector('#spanInfo').textContent = 'The email or password you provided incorrect!' : alert(`Something went wrong!`, error.code);
             });
 
     } else if (!isUser) {
@@ -79,7 +83,6 @@ async function login_firebase(e) {
     }
 }
 
-
 let LoginForm = () => {
     // "/users/login"
     return (
@@ -98,6 +101,7 @@ let LoginForm = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
             </Form.Group>
+            <Alert className='is-hidden' variant='warning' id='spanInfo' dismissible />
             <Button variant="primary" type="submit">
                 Submit
             </Button>
