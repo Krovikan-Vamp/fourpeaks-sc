@@ -20,7 +20,6 @@ import Cookies from './Components/cks.js';
 import { LoginForm } from './Components/Users/LoginPage.jsx';
 import { LandingPage } from "./Components/Users/LandingPage.jsx";
 import Collections from './Components/Users/Collections.jsx'
-import { CheckUser } from "./Components/Users/CheckUser.jsx";
 import { AdminAppBar } from "./Components/Users/AdminAppbar.jsx";
 
 function App() {

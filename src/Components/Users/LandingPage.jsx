@@ -20,6 +20,9 @@ const LandingPage = () => {
 
     return (<div id="landing-page">
         <h4 id='welcome-user'>Welcome, {userInfo.email}!</h4>
+        <hr />
+        <br /><br />
+        <p>Change or view available site information. More will be coming soon so be ready for pending changes!</p>
         <Nav variant="pills" id='landing-links' className='flex-column'>
             <Nav.Item>
                 <Nav.Link href="/users/info/stats">Physician Phone and Fax Numbers</Nav.Link>

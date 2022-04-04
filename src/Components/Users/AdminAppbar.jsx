@@ -26,8 +26,7 @@ const CheckUser = () => {
         return undefined;
     }
     const userCookie = getCookie('userCredential');
-    const userCredential = sessionStorage.getItem('userCredential');
-    if (userCredential !== null && userCookie !== undefined) {
+    if (userCookie !== undefined) {
         return null;
     } else {
         window.location.pathname = '/login'
@@ -37,7 +36,7 @@ const CheckUser = () => {
 const AdminAppBar = () => {
     CheckUser()
     const user_information = JSON.parse(getCookie('userCredential'));
-
+    console.log(user_information)
     return (<>
         <CheckUser />
         <Navbar bg="light" id='admin-appbar' expand={false}>
@@ -53,9 +52,9 @@ const AdminAppBar = () => {
                         <Offcanvas.Title id="offcanvasNavbarLabel">Admin Navigation</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                        <Nav className="justify-content-end flex-grow-1 pe-3">
+                        <Nav className="justify-content-end flex-grow-1 pe-3" id='admin-nav-cont'>
                             <Container id='admin-nav-top'>
-                                <h6>Welcome, {}</h6>
+                                <h6>Welcome, <br />{user_information._tokenResponse.displayName === '' ? user_information.user.email : user_information._tokenResponse.displayName}</h6>
                                 <Button onClick={logout} variant='primary' id='nav-logout-btn'>Logout</Button>
                             </Container>
                             <Nav.Link href="/users/landing">Home</Nav.Link>
@@ -64,19 +63,22 @@ const AdminAppBar = () => {
                                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown title="For Zack" id="offcanvasNavbarDropdown" disabled>
+                                <NavDropdown className='child-dropdown' title="For Zack" id="offcanvasNavbarDropdown" disabled>
                                     <NavDropdown.Item href='#'>Something else here</NavDropdown.Item>
                                 </NavDropdown>
                             </NavDropdown>
                         </Nav>
+                        <br />
+                        <br />
                         <Form className="d-flex">
                             <FormControl
                                 type="search"
                                 placeholder="Search"
                                 className="me-2"
                                 aria-label="Search"
+                                disabled
                             />
-                            <Button variant="outline-success">Search</Button>
+                            <Button variant="outline-success" disabled>Search</Button>
                         </Form>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>

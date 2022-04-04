@@ -113,6 +113,11 @@ footer {
     /* position: fixed; */
 }
 
+#copyright-link {
+    color: black;
+    text-decoration: none;
+}
+
 footer img {
     text-align: center;
     margin: auto;
@@ -621,7 +626,7 @@ span#paper-card {
 }
 
 #admin-appbar {
-    width: 80%;
+    width: 60%;
     margin: 0.75em auto;
     border: 2px solid black;
     border-radius: 10px;
@@ -643,16 +648,27 @@ span#paper-card {
     float: right;
 }
 
+#admin-nav-cont {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 1em;
+    margin: auto;
+}
+
+.child-dropdown {
+    padding: 1em;
+}
+
 #nav-logout-btn:hover {
     box-shadow: 10px 10px 10px black;
-    animation: wiggle 0.75s;
+    animation: wiggle 0.25s;
 }
 
 /* KEYFRAMES */
 @keyframes wiggle {
-    0% {-webkit-transform: rotate(5deg);}
-    25% {-webkit-transform: rotate(-5deg);}
-    50% {-webkit-transform: rotate(5deg);}
-    75% {-webkit-transform: rotate(-5deg);}
+    0% {-webkit-transform: rotate(2.5deg);}
+    25% {-webkit-transform: rotate(-2.5deg);}
+    50% {-webkit-transform: rotate(2.5deg);}
+    75% {-webkit-transform: rotate(-2.5deg);}
     100% {-webkit-transform: rotate(0deg);}
   }
