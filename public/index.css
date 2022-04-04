@@ -626,3 +626,33 @@ span#paper-card {
     border: 2px solid black;
     border-radius: 10px;
 }
+
+#admin-nav-top {
+    display: inline-block;
+}
+
+#admin-nav-top h6 {
+    width: fit-content;
+    display: inline-block;
+    margin: 0 0 0 0;
+}
+
+#nav-logout-btn {
+    display: inline-block;
+    width: 25%;
+    float: right;
+}
+
+#nav-logout-btn:hover {
+    box-shadow: 10px 10px 10px black;
+    animation: wiggle 0.75s;
+}
+
+/* KEYFRAMES */
+@keyframes wiggle {
+    0% {-webkit-transform: rotate(5deg);}
+    25% {-webkit-transform: rotate(-5deg);}
+    50% {-webkit-transform: rotate(5deg);}
+    75% {-webkit-transform: rotate(-5deg);}
+    100% {-webkit-transform: rotate(0deg);}
+  }

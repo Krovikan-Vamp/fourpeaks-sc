@@ -14,17 +14,17 @@ const CheckUser = () => {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
         let ca = decodedCookie.split(';');
-        for(let i = 0; i <ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
-          }
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
         }
         return undefined;
-      }
+    }
     const userCookie = getCookie('userCredential');
     const userCredential = sessionStorage.getItem('userCredential');
     if (userCredential !== null && userCookie !== undefined) {
@@ -54,6 +54,10 @@ const AdminAppBar = () => {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
+                            <Container id='admin-nav-top'>
+                                <h6>Welcome, {}</h6>
+                                <Button onClick={logout} variant='primary' id='nav-logout-btn'>Logout</Button>
+                            </Container>
                             <Nav.Link href="/users/landing">Home</Nav.Link>
                             <Nav.Link href="/users/info/stats">Physician Phone &amp; Fax Info</Nav.Link>
                             <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
