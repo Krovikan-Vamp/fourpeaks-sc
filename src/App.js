@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { Modal, Button } from 'react-bootstrap'
 import Footer from './Components/Footer.js'
 import { Alert } from "react-bootstrap";
@@ -48,6 +48,7 @@ function App() {
 
       {/* ROUTES START */}
       <Routes>
+        <Route path='*' element={<>nothin here</>} />
         <Route index path='/' element={<><CarouselBanner /><HomeCards /><OSCBanner /></>} />
         {/* Informational paths */}
         <Route path='/about' element={<DbFetch />} />
@@ -61,9 +62,10 @@ function App() {
         {/* Staff stuff */}
         {/* <CheckUser /> */}
         <Route path='/login' element={<LoginForm />} />
-        <Route path='/users' element={<AdminAppBar />}>
+        
+        <Route path='/users/landing' element={<LandingPage />} />
+        <Route path='/users'  element={<AdminAppBar />}>
           {/* All Users */}
-          <Route path='landing' element={<LandingPage />} />
           <Route path='info/stats' element={<Suggestions />} />
 
           {/* For Zack */}

@@ -1,4 +1,4 @@
-import { Nav, NavDropdown, Button } from 'react-bootstrap';
+import { Nav, NavDropdown, Button, Container } from 'react-bootstrap';
 
 
 
@@ -18,31 +18,18 @@ const LandingPage = () => {
     const userCredential = getCookie('userCredential')
     const userInfo = JSON.parse(userCredential).user;
 
-    return (<div id="landing-page">
-        <h4 id='welcome-user'>Welcome, {userInfo.email}!</h4>
-        <hr />
-        <br /><br />
-        <p>Change or view available site information. More will be coming soon so be ready for pending changes!</p>
-        <Nav variant="pills" id='landing-links' className='flex-column'>
-            <Nav.Item>
-                <Nav.Link href="/users/info/stats">Physician Phone and Fax Numbers</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link href="/users/info/analytics">Analytics</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link href="/users/admin/users">Manage Users</Nav.Link>
-            </Nav.Item>
-            <hr />
-            <Nav.Item>
-                <NavDropdown id='landing-dropper' title="Change Patient Information">
-                    <NavDropdown.Item href="/admin/paperwork">Paperwork</NavDropdown.Item>
-                    <NavDropdown.Item href="/admin/services">Services</NavDropdown.Item>
-                    <NavDropdown.Item href="/admin/testimonials">Testimonials</NavDropdown.Item>
-                </NavDropdown>
-            </Nav.Item>
-        </Nav>
-    </div>)
+    return (
+        <Container id='big-land-cont'>
+            <Container className='user-container' id='user-toolbox'>
+                <h4>Toolbox 🛠</h4>
+            </Container>
+            <Container className='user-container' id='landing-page'>
+                <h4>Welcome, {userInfo.email}</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit possimus adipisci quae quam error mollitia, maiores dicta modi eum ipsam, soluta aperiam id tenetur accusantium rerum porro! Similique, exercitationem officia?</p>
+            </Container>
+        </Container>
+
+    )
 
 
 }

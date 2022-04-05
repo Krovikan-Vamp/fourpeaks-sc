@@ -557,22 +557,6 @@ span#paper-card {
     margin: auto;
 }
 
-#landing-page {
-    width: 80vw;
-    height: 90vh;
-    margin: 2em auto;
-}
-
-#landing-page #landing-links {
-    border-radius: 20px;
-    border: 2px solid gray;
-}
-
-#landing-links a {
-    width: 100%;
-    text-align: center;
-}
-
 #logout {
     float: right;
     /* "display: block" is interpreted */
@@ -598,27 +582,29 @@ span#paper-card {
     float: right;
 }
 
-#landing-links {
-    width: 60vw;
-    min-width: 316px;
-    margin: 2em auto;
+.user-container {
+    display: inline-block;
+    /* border: 1px solid black; */
+    margin: 0;
 }
 
-#welcome-user {
-    width: 50vw;
-    min-width: 316px;
+#big-land-cont {
+    width: 80vw;
     margin: auto;
 }
 
-#site-info-links {
-    list-style-type: none;
+#user-toolbox {
+    width: 20vw;
+    border-right: 2px solid black;
 }
 
-#landing-dropper {
-    padding: 1em;
-    margin: 0.5em auto;
-    max-width: 80%;
-    /* width: 80%; */
+#user-toolbox h4 {
+    text-align: center;
+}
+
+#landing-page {
+    width: 45vw;
+
 }
 
 .is-hidden {
