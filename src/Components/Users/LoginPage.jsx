@@ -1,8 +1,7 @@
 import { Alert, Form, Button } from 'react-bootstrap';
-import { getAuth, signInWithEmailAndPassword, sendEmailVerification, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, sendEmailVerification, fetchSignInMethodsForEmail } from 'firebase/auth';
 import { getCookie, setCookie } from './LandingPage';
 
-let spanInfo = null;
 
 async function login_firebase(e) {
     e.preventDefault(); // Prevent page reload
@@ -14,7 +13,7 @@ async function login_firebase(e) {
     let isUser;
     await fetchSignInMethodsForEmail(auth, email)
         .then((res) => {
-            res.length !== 0 ? isUser = true : isUser = false;
+            res.length !== (0 || null) ? isUser = true : isUser = false;
         })
         .catch((error) => {
             alert(`${error.code}`)
@@ -29,7 +28,7 @@ async function login_firebase(e) {
                     setCookie('verificationEmail', new Date().getTime(), 1)
 
                     document.querySelector('#spanInfo').classList.remove("is-hidden")
-                    return false;
+                    // return false;
                 } else {
                     // alert('Please check your email for verification');
                 }
@@ -37,11 +36,11 @@ async function login_firebase(e) {
 
                 try {
                     const stringInfo = JSON.stringify(userCredential);
-                    sessionStorage.setItem('userCredential', stringInfo);
+                    // sessionStorage.setItem('userCredential', stringInfo); // Deprecated 4/6/22
                     setCookie('userCredential', stringInfo, 14);
                     window.location.pathname = '/users/landing';
                 } catch (QuotaExceededError) {
-                    alert('You need to allow Session Storage to log in')
+                    alert('You need to allow Cookies to log in')
                 }
             })
             .catch((error) => {

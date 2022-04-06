@@ -21,6 +21,7 @@ import { LoginForm } from './Components/Users/LoginPage.jsx';
 import { LandingPage } from "./Components/Users/LandingPage.jsx";
 import Collections from './Components/Users/Analytics.jsx'
 import { AdminAppBar } from "./Components/Users/AdminAppbar.jsx";
+import { AdminVerification } from "./Components/Users/AdminVerifier.tsx";
 
 function App() {
   const [show, setShow] = useState(false)
@@ -69,7 +70,7 @@ function App() {
           <Route path='info/stats' element={<Suggestions />} />
 
           {/* For Zack */}
-          <Route path='info/analytics' element={<Collections />} />
+          <Route path='info/analytics' element={<><AdminVerification /><Collections /></>} />
         </Route>
       </Routes>
       <Footer />

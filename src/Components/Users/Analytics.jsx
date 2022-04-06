@@ -5,7 +5,7 @@ import { DataGrid } from '@mui/x-data-grid'
 
 const CollectionsComponent = () => {
     const [analytics, setAnalytics] = useState();
-    const [suggestions, setSuggestions] = useState();
+    // const [suggestions, setSuggestions] = useState();
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         getPts()
@@ -20,7 +20,7 @@ const CollectionsComponent = () => {
             qs.forEach((doc) => {
                 items.push(doc.data())
             });
-            setSuggestions(items);
+            // setSuggestions(items);
             setLoading(false);
         })
 

@@ -9,7 +9,7 @@ const logout = () => {
     window.location.pathname = '/';
 }
 
-const CheckUser = async () => {
+const CheckUser = () => {
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -33,8 +33,8 @@ const CheckUser = async () => {
     }
 }
 
-const AdminAppBar = async () => {
-    await CheckUser()
+const AdminAppBar = () => {
+    CheckUser()
 
 
     const user_information = JSON.parse(getCookie('userCredential')).user;
