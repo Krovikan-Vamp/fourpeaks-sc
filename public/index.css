@@ -118,7 +118,9 @@ footer {
     color: black;
     text-decoration: none;
 }
-
+#copyright-link:hover {
+    cursor: text;
+}
 footer img {
     text-align: center;
     margin: auto;
@@ -190,6 +192,10 @@ footer .card {
     margin-bottom: 0px;
     /* border-top: 3px solid #27b8c2; */
     border-bottom: 3px solid #27b8c2;
+}
+
+#page-title:hover {
+    cursor: default;
 }
 
 /* Content Styles */
@@ -630,6 +636,12 @@ span#paper-card {
     display: none;
 }
 
+#custom-welcome {
+    display: inline-block;
+    width: 150px;
+    margin: 0;
+}
+
 #admin-appbar {
     width: 60%;
     margin: 0.75em auto;
@@ -639,12 +651,6 @@ span#paper-card {
 
 #admin-nav-top {
     display: inline-block;
-}
-
-#admin-nav-top h6 {
-    width: fit-content;
-    display: inline-block;
-    margin: 0 0 0 0;
 }
 
 #nav-logout-btn {

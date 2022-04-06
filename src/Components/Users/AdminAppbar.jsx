@@ -37,8 +37,8 @@ const AdminAppBar = () => {
     CheckUser()
 
 
-    const user_information = JSON.parse(getCookie('userCredential')).user;
-    console.log(user_information)
+    const userInfo = JSON.parse(getCookie('userCredential')).user;
+    console.log(userInfo)
 
     return (<>
         <CheckUser />
@@ -55,20 +55,18 @@ const AdminAppBar = () => {
                         <Offcanvas.Title id="offcanvasNavbarLabel">Admin Navigation</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                        <Nav className="justify-content-end flex-grow-1 pe-3" id='admin-nav-cont'>
-                            <Container id='admin-nav-top'>
-                                <h6>Welcome, <br />{user_information.providerData[0].displayName === '' ? user_information.user.email : user_information.providerData[0].displayName}</h6>
-                                <Button onClick={logout} variant='primary' id='nav-logout-btn'>Logout</Button>
-                            </Container>
-                            <Nav.Link href="/users/landing">Home</Nav.Link>
-                            <Nav.Link href="/users/info/stats">Physician Phone &amp; Fax Info</Nav.Link>
-                            <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown className='child-dropdown' title="For Zack" id="offcanvasNavbarDropdown" disabled>
-                                    <NavDropdown.Item href='#'>Something else here</NavDropdown.Item>
-                                </NavDropdown>
+                        <h6 id='custom-welcome'>Welcome,<br />{userInfo.email}</h6>
+                        <Button onClick={logout} variant='primary' id='landing-logout-btn'>Logout</Button>
+                        <br /><br />
+                        <Nav>
+                            <Nav.Link href='/users/landing' hidden={window.location.pathname === '/users/landing' ? true : false}>Home</Nav.Link>
+                            <Nav.Link href='/users/info/analytics' style={{ width: '100%' }} hidden={userInfo.email !== 'zaxdev59@gmail.com' ? true : false} disabled={userInfo.email !== 'zaxdev59@gmail.com' ? true : false}>Analytics</Nav.Link>
+                            <Nav.Link href='/users/info/stats' style={{ width: '100%' }} disabled={userInfo.emailVerified ? false : true}>Physician Info</Nav.Link>
+                            <NavDropdown id='toolbox' title='User Manager'>
+                                <NavDropdown.Item href=''>Create</NavDropdown.Item>
+                                <NavDropdown.Item href=''>View</NavDropdown.Item>
+                                <NavDropdown.Item href=''>Update</NavDropdown.Item>
+                                <NavDropdown.Item href=''>Delete</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <br />

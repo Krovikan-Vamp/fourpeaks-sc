@@ -5,7 +5,7 @@ export default function Footer() {
         <footer>
             <CardGroup id='footer-start'>
                 <Card className='thirds' id='fpsc-third'>
-                    <p><span id='third-title'><a href='/contact'>Four Peaks Surgery Center</a></span><br />9425 West Bell Rd. Sun City, Arizona 85351<br />P: 623.399.6880 / F: 623.322.1504</p>
+                    <p><span id='third-title'><a href='/contact'>Four Peaks Surgery Center</a></span><br />9425 West Bell Rd. Sun City, Arizona 85351<br />P: 623.399.6880 <a id='copyright-link' href='/login'>/</a> F: 623.322.1504</p>
 
                 </Card>
                 <Card className='thirds' id='logo-holder'>
@@ -17,7 +17,7 @@ export default function Footer() {
                 </Card>
             </CardGroup>
             <Card id='footer'>
-                <Card.Text id='center'>Four Peaks Surgery Center 2021 <a id='copyright-link' href='/login'>&#169;</a><br />Designed and created by <abbr title='zaxdev59@gmail.com'>Zackery Hatch</abbr></Card.Text>
+                <Card.Text id='center'>Four Peaks Surgery Center 2021 &#169;<br />Designed and created by <abbr title='zaxdev59@gmail.com'>Zackery Hatch</abbr></Card.Text>
             </Card>
         </footer>
     )
