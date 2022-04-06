@@ -19,7 +19,7 @@ import Suggestions from "./Components/Users/suggestions.jsx";
 import Cookies from './Components/cks.js';
 import { LoginForm } from './Components/Users/LoginPage.jsx';
 import { LandingPage } from "./Components/Users/LandingPage.jsx";
-import Collections from './Components/Users/Collections.jsx'
+import Collections from './Components/Users/Analytics.jsx'
 import { AdminAppBar } from "./Components/Users/AdminAppbar.jsx";
 
 function App() {
@@ -62,9 +62,9 @@ function App() {
         {/* Staff stuff */}
         {/* <CheckUser /> */}
         <Route path='/login' element={<LoginForm />} />
-        
+
         <Route path='/users/landing' element={<LandingPage />} />
-        <Route path='/users'  element={<AdminAppBar />}>
+        <Route path='/users' element={<AdminAppBar />}>
           {/* All Users */}
           <Route path='info/stats' element={<Suggestions />} />
 

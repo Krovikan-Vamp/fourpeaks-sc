@@ -49,9 +49,9 @@ const CollectionsComponent = () => {
         )
     }
     return (
-        <div id='collection-container' style={{ height: '100vh', width: '300vw' }}>
+        <div id='collection-container' style={{ height: '100vh', width: '70vw' }}>
             <DataGrid
-                // id='analytics'
+                id='analytics'
                 rows={analytics}
                 // rowsPerPageOptions={[5]}
                 columns={anal_columns}

@@ -1,4 +1,5 @@
-import { Nav, NavDropdown, Button, Container } from 'react-bootstrap';
+import { Nav, NavDropdown, Button, Container, Card, Accordion } from 'react-bootstrap';
+import { logout, CheckUser } from './AdminAppbar.jsx';
 
 
 
@@ -15,18 +16,41 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 const LandingPage = () => {
+    CheckUser();
+
+
     const userCredential = getCookie('userCredential')
     const userInfo = JSON.parse(userCredential).user;
+    console.log(userInfo);
 
     return (
-        <Container id='big-land-cont'>
-            <Container className='user-container' id='user-toolbox'>
-                <h4>Toolbox 🛠</h4>
-            </Container>
-            <Container className='user-container' id='landing-page'>
-                <h4>Welcome, {userInfo.email}</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit possimus adipisci quae quam error mollitia, maiores dicta modi eum ipsam, soluta aperiam id tenetur accusantium rerum porro! Similique, exercitationem officia?</p>
-            </Container>
+        <Container id='content-page' fluid>
+            {/* ===================== LEFT ===================== */}
+            <Card className='content-left' id='content-left'>
+                <h5>Admin Toolbox</h5>
+                <Nav>
+                    <Nav.Link href='/users/info/analytics' hidden={userInfo.email !== 'zaxdev59@gmail.com' ? true : false} disabled={userInfo.email !== 'zaxdev59@gmail.com' ? true : false}>Analytics</Nav.Link>
+                    <Nav.Link href='/users/info/stats'>Physician Info</Nav.Link>
+                    <NavDropdown id='toolbox' title='User Manager'>
+                        <NavDropdown.Item href=''>Create</NavDropdown.Item>
+                        <NavDropdown.Item href=''>View</NavDropdown.Item>
+                        <NavDropdown.Item href=''>Update</NavDropdown.Item>
+                        <NavDropdown.Item href=''>Delete</NavDropdown.Item>
+                    </NavDropdown>
+                </Nav>
+            </Card>
+            {/* ===================== RIGHT ===================== */}
+            <Card id='user-landing-right' className='content-right' >
+                {/* className='content-right' */}
+                <div>
+                    <h4>Welcome, {userInfo.providerData[0].displayName === null ? userInfo.email : userInfo.providerData[0].displayName} <abbr id='emailVerify-check' title='Email verification status'>{userInfo.emailVerified === true ? '✔' : '❌'}</abbr></h4>
+                    <Button onClick={logout} variant='primary' id='landing-logout-btn'>Logout</Button>
+                </div>
+                <hr />
+                <Card.Body>
+                    <p>In this are you are able to <abbr title="If you're a manager">manage</abbr> users and change site information. User's that are not managers can view the collected information from Speckles if they need to get other physicians' phone and fax numbers.</p>
+                </Card.Body>
+            </Card>
         </Container>
 
     )

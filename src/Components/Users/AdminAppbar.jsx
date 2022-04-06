@@ -2,14 +2,14 @@ import { Nav, Navbar, NavDropdown, Form, FormControl, Button, Offcanvas, Contain
 import { getCookie, setCookie } from './LandingPage';
 import { Outlet } from 'react-router-dom';
 
-function logout() {
+const logout = () => {
     sessionStorage.removeItem('userCredential')
     // Delete the cookie somehow
     setCookie('userCredential', '', 0)
-    window.location.reload()
+    window.location.pathname = '/';
 }
 
-const CheckUser = () => {
+const CheckUser = async () => {
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -26,17 +26,20 @@ const CheckUser = () => {
         return undefined;
     }
     const userCookie = getCookie('userCredential');
-    if (userCookie !== undefined) {
-        return null;
-    } else {
+    if (userCookie === undefined) {
         window.location.pathname = '/login'
+    } else {
+        return null;
     }
 }
 
-const AdminAppBar = () => {
-    CheckUser()
-    const user_information = JSON.parse(getCookie('userCredential'));
+const AdminAppBar = async () => {
+    await CheckUser()
+
+
+    const user_information = JSON.parse(getCookie('userCredential')).user;
     console.log(user_information)
+
     return (<>
         <CheckUser />
         <Navbar bg="light" id='admin-appbar' expand={false}>
@@ -54,7 +57,7 @@ const AdminAppBar = () => {
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3" id='admin-nav-cont'>
                             <Container id='admin-nav-top'>
-                                <h6>Welcome, <br />{user_information._tokenResponse.displayName === '' ? user_information.user.email : user_information._tokenResponse.displayName}</h6>
+                                <h6>Welcome, <br />{user_information.providerData[0].displayName === '' ? user_information.user.email : user_information.providerData[0].displayName}</h6>
                                 <Button onClick={logout} variant='primary' id='nav-logout-btn'>Logout</Button>
                             </Container>
                             <Nav.Link href="/users/landing">Home</Nav.Link>
@@ -89,4 +92,4 @@ const AdminAppBar = () => {
     </>)
 }
 
-export { AdminAppBar }
+export { AdminAppBar, logout, CheckUser }
