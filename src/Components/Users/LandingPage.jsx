@@ -1,4 +1,4 @@
-import { Nav, NavDropdown, Button, Container, Card, Alert } from 'react-bootstrap';
+import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup } from 'react-bootstrap';
 import { logout, CheckUser, AdminAppBar } from './AdminAppbar.jsx';
 
 
@@ -71,6 +71,21 @@ const LandingPage = () => {
                 <hr />
                 <Card.Body>
                     <p>In this are you are able to <abbr title="If you're a manager">manage</abbr> users and change site information. User's that are not managers can view the collected information from Speckles if they need to get other physicians' phone and fax numbers. Please ensure access to this part of the website is limited and only available to trusted associates as it contains possibly sensitive patient/provider information.</p>
+                    <CardGroup>
+                        <Card hidden={userInfo.email !== 'zaxdev59@gmail.com' ? true : false}>
+                            <Card.Header>Analytics</Card.Header>
+                            <Card.Body>View website analytics and manipulate the collected data for whatever you want.</Card.Body>
+                            <Card.Link  href='/users/info/analytics'><Button>Learn more</Button></Card.Link>
+                        </Card>
+                        <Card>
+                            <Card.Header>Physician Information</Card.Header>
+                            <Card.Body>View physician phone and fax information gathered via Speckles, our medical records software.</Card.Body>
+                        </Card>
+                        <Card>
+                            <Card.Header>Thing 3</Card.Header>
+                            <Card.Body></Card.Body>
+                        </Card>
+                    </CardGroup>
                 </Card.Body>
             </Card>
         </Container>
