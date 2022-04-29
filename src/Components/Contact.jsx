@@ -28,11 +28,11 @@ const Contact = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>8:30 AM - 5:00 PM</td>
-                            <td>8:30 AM - 5:00 PM</td>
-                            <td>8:30 AM - 5:00 PM</td>
-                            <td>8:30 AM - 5:00 PM</td>
-                            <td>8:30 AM - 5:00 PM</td>
+                            <td>8:00 AM - 5:00 PM</td>
+                            <td>8:00 AM - 5:00 PM</td>
+                            <td>8:00 AM - 5:00 PM</td>
+                            <td>8:00 AM - 5:00 PM</td>
+                            <td>8:00 AM - 5:00 PM</td>
                         </tr>
                     </tbody>
                 </Table>

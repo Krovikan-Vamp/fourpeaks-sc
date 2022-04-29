@@ -1,5 +1,6 @@
-import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup } from 'react-bootstrap';
+import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup, Modal, Form } from 'react-bootstrap';
 import { logout, CheckUser, AdminAppBar } from './AdminAppbar.jsx';
+import { useState } from 'react'
 
 
 // Use this down the road when you feel like it
@@ -14,9 +15,82 @@ function setCookie(cname, cvalue, exdays) {
     let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+
+const CreateUser = () => {
+
+    return (
+        <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Form>
+    )
+}
+const Viewuser = () => {
+    return (<></>)
+}
+const UpdateUser = () => {
+    return (<></>)
+}
+const DeleteUser = () => {
+    return (<></>)
+}
+const pageElms = {
+    create: {
+        name: 'Create',
+        header: 'Create new user'
+    },
+    view: {
+        name: 'View'
+    },
+    update: {
+        name: 'Update'
+    },
+    delete: {
+        name: 'Delete'
+    }
+}
 const LandingPage = () => {
     // Check that user is logged in
     CheckUser();
+
+    const [show, setShow] = useState(false);
+
+    var hook;
+    const handleShow = (props) => {
+        setShow(true);
+        console.log(hook)
+        // Switch/case for modal props
+        switch (props.title) {
+            case 'Create':
+                console.log(`showing create!`);
+                sessionStorage.setItem('modalProps', JSON.stringify(pageElms.create));
+                break;
+            case 'View':
+                console.log(`You clicked the view one!`);
+                sessionStorage.setItem('modalProps', JSON.stringify(pageElms.view));
+                break;
+            default:
+                break;
+        }
+    }
+    const handleClose = () => setShow(false);
 
     // Manipulate + instantiate data
     const userCredential = getCookie('userCredential')
@@ -29,7 +103,25 @@ const LandingPage = () => {
     pathRef.shift();
     pathRef.unshift('home')
 
+    const mInfo = JSON.parse(sessionStorage.getItem('modalProps'));
+
+    function renderSwitch(props) {
+        switch (props) {
+            case 'Create':
+                return <CreateUser />;
+            case 'View':
+                return <Viewuser />;
+            case 'Update':
+                return <UpdateUser />;
+            case 'Delete':  
+                return <DeleteUser />;
+            default:
+                return;
+        }
+        
+    }
     return (<>
+        {/* I really need to make a breadcrumbs element 🧐 */}
         <Alert id='page-title' variant="light">
             {pathRef.map((i) => {
                 if (i !== pathRef[pathRef.length - 1]) {
@@ -46,6 +138,17 @@ const LandingPage = () => {
                 </section>
             </div>
         </Alert>
+
+        {/* item modals */}
+        <Modal id='create-id' show={show} onHide={handleClose} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>{mInfo.header}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body id='modal-body-hook'>
+                {renderSwitch(mInfo.name)}
+            </Modal.Body>
+
+        </Modal>
         <Container id='content-page' fluid>
             {/* ===================== LEFT ===================== */}
             <Card className='content-left' id='content-left'>
@@ -54,8 +157,12 @@ const LandingPage = () => {
                     <Nav.Link href='/users/info/analytics' style={{ width: '100%' }} hidden={userInfo.email !== 'zaxdev59@gmail.com' ? true : false} disabled={userInfo.email !== 'zaxdev59@gmail.com' ? true : false}>Analytics</Nav.Link>
                     <Nav.Link href='/users/info/stats' style={{ width: '100%' }} disabled={userInfo.emailVerified ? false : true}>Physician Info</Nav.Link>
                     <NavDropdown id='toolbox' title='User Manager'>
-                        <NavDropdown.Item href=''>Create</NavDropdown.Item>
-                        <NavDropdown.Item href=''>View</NavDropdown.Item>
+                        <NavDropdown.Item href='' onClick={() => handleShow({ title: 'Create' })}>
+                            Create
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href='' onClick={() => handleShow({ title: 'View' })}>
+                            View
+                        </NavDropdown.Item>
                         <NavDropdown.Item href=''>Update</NavDropdown.Item>
                         <NavDropdown.Item href=''>Delete</NavDropdown.Item>
                     </NavDropdown>
@@ -75,7 +182,7 @@ const LandingPage = () => {
                         <Card hidden={userInfo.email !== 'zaxdev59@gmail.com' ? true : false}>
                             <Card.Header>Analytics</Card.Header>
                             <Card.Body>View website analytics and manipulate the collected data for whatever you want.</Card.Body>
-                            <Card.Link  href='/users/info/analytics'><Button>Learn more</Button></Card.Link>
+                            <Card.Link href='/users/info/analytics'><Button>Learn more</Button></Card.Link>
                         </Card>
                         <Card>
                             <Card.Header>Physician Information</Card.Header>

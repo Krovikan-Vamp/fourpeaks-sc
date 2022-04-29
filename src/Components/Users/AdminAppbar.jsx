@@ -38,7 +38,7 @@ const AdminAppBar = () => {
 
 
     const userInfo = JSON.parse(getCookie('userCredential')).user;
-    console.log(userInfo)
+    // console.log(userInfo)
 
     return (<>
         <CheckUser />
