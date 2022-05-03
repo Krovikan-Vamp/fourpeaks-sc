@@ -1,6 +1,8 @@
 import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup, Modal, Form } from 'react-bootstrap';
 import { logout, CheckUser, AdminAppBar } from './AdminAppbar.jsx';
-import { useState } from 'react'
+import { useState } from 'react';
+import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { app } from '../../firebase.js'
 
 
 // Use this down the road when you feel like it
@@ -15,12 +17,51 @@ function setCookie(cname, cvalue, exdays) {
     let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+async function userExists(props) {
+    let isUser;
+    await fetchSignInMethodsForEmail(props.auth, props.email)
+        .then((res) => {
+            res.length !== 0 ? isUser = true : isUser = false;
+        })
+        .catch((error) => {
+            alert(`${error.code}`)
+        });
+
+    return isUser
+}
 
 
-const CreateUser = () => {
+
+const CreateUserComp = () => {
+    async function createUser(e) {
+        e.preventDefault();
+        const details = {
+            email: e.target[0].value,
+            password: e.target[1].value,
+            adminValue: e.target[2].checked,
+            auth: getAuth()
+        }
+        const userDoesExist = await userExists(details);
+        console.log(`${userDoesExist} => "${details.email}"`)
+
+        if (!userDoesExist) {
+            await createUserWithEmailAndPassword(details.auth, details.email, details.password)
+                .then(async () => {
+                    await app.firestore().collection(`Users`).doc().set({ email: details.email, admin: details.adminValue })
+                    alert(`Created account for ${details.email} successfully!`)
+                });
+            if (details.adminValue) {
+                await app.firestore().collection(`Admin Users`).doc(details.email).set({ email: details.email });
+            }
+        } else {
+            alert(`Email already in use!`)
+        }
+        // eslint-disable-next-line
+        window.location.pathname = window.location.pathname
+    }
 
     return (
-        <Form>
+        <Form onSubmit={createUser} autoComplete="off">
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
@@ -42,7 +83,7 @@ const CreateUser = () => {
         </Form>
     )
 }
-const Viewuser = () => {
+const ViewUser = () => {
     return (<></>)
 }
 const UpdateUser = () => {
@@ -57,7 +98,8 @@ const pageElms = {
         header: 'Create new user'
     },
     view: {
-        name: 'View'
+        name: 'View',
+        header: 'All Users'
     },
     update: {
         name: 'Update'
@@ -69,14 +111,16 @@ const pageElms = {
 const LandingPage = () => {
     // Check that user is logged in
     CheckUser();
+    var f;
+    // eslint-disable-next-line
+    !sessionStorage.getItem('modalProps') ? sessionStorage.setItem('modalProps', JSON.stringify({ base: 'nothing' })) : f = 'hm';
 
     const [show, setShow] = useState(false);
 
-    var hook;
     const handleShow = (props) => {
         setShow(true);
-        console.log(hook)
-        // Switch/case for modal props
+
+        // Switch-case for modal props
         switch (props.title) {
             case 'Create':
                 console.log(`showing create!`);
@@ -108,17 +152,17 @@ const LandingPage = () => {
     function renderSwitch(props) {
         switch (props) {
             case 'Create':
-                return <CreateUser />;
+                return <CreateUserComp />;
             case 'View':
-                return <Viewuser />;
+                return <ViewUser />;
             case 'Update':
                 return <UpdateUser />;
-            case 'Delete':  
+            case 'Delete':
                 return <DeleteUser />;
             default:
                 return;
         }
-        
+
     }
     return (<>
         {/* I really need to make a breadcrumbs element 🧐 */}

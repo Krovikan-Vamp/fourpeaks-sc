@@ -52,23 +52,6 @@ async function login_firebase(e) {
         navigator.clipboard.writeText('zack@fourpeakssurgery.com');
     }
 
-    // Don't do this!
-    // createUserWithEmailAndPassword(auth, email, password)
-    //         .then((userCredential) => {
-    //             alert(`Thanks for creating an account!`);
-    //             try {
-    //                 sessionStorage.setItem('userCredential', JSON.stringify(userCredential))
-    //                 window.location.pathname = '/users/landing';
-    //             } catch (QuotaExceededError) {
-    //                 alert('You need to allow Session Storage to log in')
-    //             } finally {
-    //                 // window.location.pathname = '/'
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             alert(`uh oh!\n${error.code}`)
-    //         })
-
     let isLoggedIn = sessionStorage.getItem('userEmail') > 0;
 
     if (isLoggedIn) {
