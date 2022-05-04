@@ -713,8 +713,9 @@ span#paper-card {
     width: 100%;
 }
 
-
-
+.admin-row-color {
+    background-color: #1eff1610;
+}
 
 
 

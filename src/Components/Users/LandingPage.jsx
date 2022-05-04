@@ -1,8 +1,9 @@
-import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup, Modal, Form } from 'react-bootstrap';
+import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup, Modal, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { logout, CheckUser, AdminAppBar } from './AdminAppbar.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
 import { app } from '../../firebase.js'
+import { DataGrid } from '@mui/x-data-grid'
 
 
 // Use this down the road when you feel like it
@@ -47,7 +48,7 @@ const CreateUserComp = () => {
         if (!userDoesExist) {
             await createUserWithEmailAndPassword(details.auth, details.email, details.password)
                 .then(async () => {
-                    await app.firestore().collection(`Users`).doc().set({ email: details.email, admin: details.adminValue })
+                    await app.firestore().collection(`Users`).doc(details.email).set({ id: Math.ceil(Math.random() * 100000), email: details.email, password: window.btoa(window.btoa(details.password)), isAdmin: details.adminValue })
                     alert(`Created account for ${details.email} successfully!`)
                 });
             if (details.adminValue) {
@@ -66,7 +67,7 @@ const CreateUserComp = () => {
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
                 <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
+                    We'll never share this email with anyone else.
                 </Form.Text>
             </Form.Group>
 
@@ -75,7 +76,7 @@ const CreateUserComp = () => {
                 <Form.Control type="password" placeholder="Password" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
+                <Form.Check type="checkbox" label="Make user administrator" />
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
@@ -83,14 +84,96 @@ const CreateUserComp = () => {
         </Form>
     )
 }
-const ViewUser = () => {
-    return (<></>)
+const ViewUsersComp = () => {
+    // Getting the users from Firebase/Firestore collection "Users"
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false)
+    //eslint-disable-next-line
+    useEffect(async () => {
+        await getUsers();
+        if (!loading) console.log(users);
+        //eslint-disable-next-line
+    }, []);
+    async function getUsers() {
+        setLoading(true)
+        const ref = await app.firestore().collection(`Users`).orderBy('email', 'asc')
+
+        ref.onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push(doc.data())
+            });
+            setUsers(items);
+            setLoading(false);
+        })
+    }
+
+    const columns = [
+        { field: 'id', headerName: 'ID', hide: true },
+        { field: 'email', headerName: 'Email Address', minWidth: 450 }
+    ]
+
+
+    // Return some JSX
+    if (loading) {
+        return (
+            <h1>Loading users...</h1>
+        )
+    }
+    return (
+        <DataGrid
+
+            autoHeight
+            rows={users}
+            columns={columns}
+            // checkboxSelection
+            hideFooter
+            getRowClassName={(params) => params.row.isAdmin ? `admin-row-color` : ``}
+        >
+
+        </DataGrid>)
 }
 const UpdateUser = () => {
     return (<></>)
 }
-const DeleteUser = () => {
-    return (<></>)
+const DeleteUserComp = () => {
+    async function deleteUser(e) {
+        // Prevent page refresh :)
+        e.preventDefault();
+
+        // Start the delete process
+        // const [loading, setLoading] = useState(true);
+        let auth = getAuth();
+
+
+        console.log(auth.currentUser)
+    }
+
+    const renderTooltip = (props) => {
+        <Tooltip id='something' {...props}>
+            Simple tooltip!
+        </Tooltip>
+    }
+    return (
+        <Form onSubmit={deleteUser} autoComplete="off">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Text className="text-muted">
+                    Enter the email address of the account to delete
+                </Form.Text>
+            </Form.Group>
+            <OverlayTrigger
+                placement='right'
+                delay={{ show: 200, hide: 400 }}
+                overlay={renderTooltip}
+            >
+                <Button variant="danger" type="submit">
+                    Delete
+                </Button>
+            </OverlayTrigger>
+        </Form>
+    )
 }
 const pageElms = {
     create: {
@@ -105,7 +188,8 @@ const pageElms = {
         name: 'Update'
     },
     delete: {
-        name: 'Delete'
+        name: 'Delete',
+        header: 'Remove Users'
     }
 }
 const LandingPage = () => {
@@ -123,12 +207,13 @@ const LandingPage = () => {
         // Switch-case for modal props
         switch (props.title) {
             case 'Create':
-                console.log(`showing create!`);
                 sessionStorage.setItem('modalProps', JSON.stringify(pageElms.create));
                 break;
             case 'View':
-                console.log(`You clicked the view one!`);
                 sessionStorage.setItem('modalProps', JSON.stringify(pageElms.view));
+                break;
+            case 'Delete':
+                sessionStorage.setItem('modalProps', JSON.stringify(pageElms.delete));
                 break;
             default:
                 break;
@@ -154,11 +239,11 @@ const LandingPage = () => {
             case 'Create':
                 return <CreateUserComp />;
             case 'View':
-                return <ViewUser />;
+                return <ViewUsersComp />;
             case 'Update':
                 return <UpdateUser />;
             case 'Delete':
-                return <DeleteUser />;
+                return <DeleteUserComp />;
             default:
                 return;
         }
@@ -184,7 +269,7 @@ const LandingPage = () => {
         </Alert>
 
         {/* item modals */}
-        <Modal id='create-id' show={show} onHide={handleClose} centered>
+        <Modal id='toolbox-modal' show={show} onHide={handleClose} centered>
             <Modal.Header closeButton>
                 <Modal.Title>{mInfo.header}</Modal.Title>
             </Modal.Header>
@@ -201,14 +286,14 @@ const LandingPage = () => {
                     <Nav.Link href='/users/info/analytics' style={{ width: '100%' }} hidden={userInfo.email !== 'zaxdev59@gmail.com' ? true : false} disabled={userInfo.email !== 'zaxdev59@gmail.com' ? true : false}>Analytics</Nav.Link>
                     <Nav.Link href='/users/info/stats' style={{ width: '100%' }} disabled={userInfo.emailVerified ? false : true}>Physician Info</Nav.Link>
                     <NavDropdown id='toolbox' title='User Manager'>
-                        <NavDropdown.Item href='' onClick={() => handleShow({ title: 'Create' })}>
+                        <NavDropdown.Item onClick={() => handleShow({ title: 'Create' })}>
                             Create
                         </NavDropdown.Item>
-                        <NavDropdown.Item href='' onClick={() => handleShow({ title: 'View' })}>
+                        <NavDropdown.Item onClick={() => handleShow({ title: 'View' })}>
                             View
                         </NavDropdown.Item>
                         <NavDropdown.Item href=''>Update</NavDropdown.Item>
-                        <NavDropdown.Item href=''>Delete</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => handleShow({ title: 'Delete' })}>Delete</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Card>

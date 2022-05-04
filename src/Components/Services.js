@@ -12,7 +12,6 @@ export default function Services() {
     pathRef.shift()
     pathRef.unshift('home')
     function getPages() {
-
         setLoading(true);
         const dbRef = app.firestore().collection('services').orderBy('full_name', 'asc')
 
