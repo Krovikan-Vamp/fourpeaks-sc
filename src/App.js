@@ -65,6 +65,7 @@ function App() {
         <Route path='/login' element={<LoginForm />} />
 
         <Route path='/users/landing' element={<LandingPage />} />
+        {/* Start of /users subsection */}
         <Route path='/users' element={<AdminAppBar />}>
           {/* All Users */}
           <Route path='info/stats' element={<Suggestions />} />

@@ -1,10 +1,9 @@
-import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup, Modal, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup, Modal, Form, FloatingLabel, Toast, Row, Col, ToastContainer } from 'react-bootstrap';
 import { logout, CheckUser, AdminAppBar } from './AdminAppbar.jsx';
 import { useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
 import { app } from '../../firebase.js'
 import { DataGrid } from '@mui/x-data-grid'
-
 
 // Use this down the road when you feel like it
 function getCookie(name) {
@@ -31,7 +30,51 @@ async function userExists(props) {
     return isUser
 }
 
+const AddSurvey = () => {
+    const [show, setShow] = useState(false)
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    async function createTestimonial(e) {
+        e.preventDefault();
+        // const [tag, showTag] = useState(false)
+        console.log(e)
+        let date = e.target[0].value;
+        let comments = e.target[1].value;
+        date = date.split('-')
+        date = { month: parseInt(date[1]), year: date[0], full_date: `${months[parseInt(date[1] - 1)]} ${date[0]}` }
+        console.log(date, comments)
 
+        await app.firestore().collection('Testimonials').doc().set({ month: date.month, year: parseInt(date.year), date_M_Y: date.full_date, comment: comments })
+            .then(() => {
+                setShow(true)
+                e.target[1].value = ''
+            })
+    }
+    return (
+        <Form onSubmit={createTestimonial} autoComplete='off'>
+            <Form.Group className='mb-3'>
+                <Form.Label>Procedure or service date:</Form.Label>
+                <Form.Control type='month' required />
+            </Form.Group>
+            <Form.Group className='mb-3'>
+                <Form.Label>Enter testimonial:</Form.Label>
+                <FloatingLabel label='Patient Comments'>
+                    <Form.Control as='textarea' style={{ height: '135px' }} placeholder='Patient Comments' required />
+                </FloatingLabel>
+            </Form.Group>
+            <Button variant='primary' type='submit'>Submit</Button>
+
+            <ToastContainer position='bottom-end'>
+                <Toast bg='#d8e1f2' id='success-toast-alert' onClose={() => setShow(false)} show={show} delay={2700} autohide>
+                    <Toast.Header>
+                        <strong className="me-auto">Testimonial Added</strong>
+                        <small>seconds ago</small>
+                    </Toast.Header>
+                    <Toast.Body style={{ backgroundColor: '#d8e1f2' }}>Woohoo, this upload was successful!</Toast.Body>
+                </Toast>
+            </ToastContainer>
+        </Form>
+    )
+}
 
 const CreateUserComp = () => {
     async function createUser(e) {
@@ -91,7 +134,7 @@ const ViewUsersComp = () => {
     //eslint-disable-next-line
     useEffect(async () => {
         await getUsers();
-        if (!loading) console.log(users);
+        // if (!loading) console.log(users);
         //eslint-disable-next-line
     }, []);
     async function getUsers() {
@@ -136,6 +179,7 @@ const ViewUsersComp = () => {
 const UpdateUser = () => {
     return (<></>)
 }
+// Still needs to be finished 😁
 const DeleteUserComp = () => {
     async function deleteUser(e) {
         // Prevent page refresh :)
@@ -148,30 +192,20 @@ const DeleteUserComp = () => {
 
         console.log(auth.currentUser)
     }
-
-    const renderTooltip = (props) => {
-        <Tooltip id='something' {...props}>
-            Simple tooltip!
-        </Tooltip>
-    }
     return (
         <Form onSubmit={deleteUser} autoComplete="off">
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                {/* <h4>Disclaimer</h4> */}
+                <p style={{ fontStyle: 'italic' }}>Deleting a user here only removes their access to restricted pages, <b>not</b> their login.</p>
+                <Form.Label>Annul Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
                 <Form.Text className="text-muted">
                     Enter the email address of the account to delete
                 </Form.Text>
             </Form.Group>
-            <OverlayTrigger
-                placement='right'
-                delay={{ show: 200, hide: 400 }}
-                overlay={renderTooltip}
-            >
-                <Button variant="danger" type="submit">
-                    Delete
-                </Button>
-            </OverlayTrigger>
+            <Button variant="danger" type="submit">
+                Delete
+            </Button>
         </Form>
     )
 }
@@ -190,14 +224,23 @@ const pageElms = {
     delete: {
         name: 'Delete',
         header: 'Remove Users'
+    },
+    survey: {
+        name: 'Survey',
+        header: 'Upload Patient Testimonial'
     }
 }
 const LandingPage = () => {
     // Check that user is logged in
     CheckUser();
+    // Manipulate + instantiate data
+    const userCredential = getCookie('userCredential')
+    const userInfo = JSON.parse(userCredential).user;
+
     var f;
     // eslint-disable-next-line
     !sessionStorage.getItem('modalProps') ? sessionStorage.setItem('modalProps', JSON.stringify({ base: 'nothing' })) : f = 'hm';
+    sessionStorage.getItem('modalProps') === undefined ? sessionStorage.setItem('modalProps', JSON.stringify({ base: 'nothing' })) : f = 'hm';
 
     const [show, setShow] = useState(false);
 
@@ -215,15 +258,14 @@ const LandingPage = () => {
             case 'Delete':
                 sessionStorage.setItem('modalProps', JSON.stringify(pageElms.delete));
                 break;
+            case 'Survey':
+                sessionStorage.setItem('modalProps', JSON.stringify(pageElms.survey))
             default:
                 break;
         }
     }
     const handleClose = () => setShow(false);
 
-    // Manipulate + instantiate data
-    const userCredential = getCookie('userCredential')
-    const userInfo = JSON.parse(userCredential).user;
 
     // Breadcrumbs
     var pathRef = window.location.pathname;
@@ -244,6 +286,8 @@ const LandingPage = () => {
                 return <UpdateUser />;
             case 'Delete':
                 return <DeleteUserComp />;
+            case 'Survey':
+                return <AddSurvey />;
             default:
                 return;
         }
@@ -285,13 +329,9 @@ const LandingPage = () => {
                 <Nav>
                     <Nav.Link href='/users/info/analytics' style={{ width: '100%' }} hidden={userInfo.email !== 'zaxdev59@gmail.com' ? true : false} disabled={userInfo.email !== 'zaxdev59@gmail.com' ? true : false}>Analytics</Nav.Link>
                     <Nav.Link href='/users/info/stats' style={{ width: '100%' }} disabled={userInfo.emailVerified ? false : true}>Physician Info</Nav.Link>
-                    <NavDropdown id='toolbox' title='User Manager'>
-                        <NavDropdown.Item onClick={() => handleShow({ title: 'Create' })}>
-                            Create
-                        </NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => handleShow({ title: 'View' })}>
-                            View
-                        </NavDropdown.Item>
+                    <NavDropdown id='toolbox' hidden={''} title='User Manager'>
+                        <NavDropdown.Item onClick={() => handleShow({ title: 'Create' })}>Create</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => handleShow({ title: 'View' })}>View</NavDropdown.Item>
                         <NavDropdown.Item href=''>Update</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => handleShow({ title: 'Delete' })}>Delete</NavDropdown.Item>
                     </NavDropdown>
@@ -307,7 +347,7 @@ const LandingPage = () => {
                 <hr />
                 <Card.Body>
                     <p>In this are you are able to <abbr title="If you're a manager">manage</abbr> users and change site information. User's that are not managers can view the collected information from Speckles if they need to get other physicians' phone and fax numbers. Please ensure access to this part of the website is limited and only available to trusted associates as it contains possibly sensitive patient/provider information.</p>
-                    <CardGroup>
+                    <CardGroup id='user-landing-cg'>
                         <Card hidden={userInfo.email !== 'zaxdev59@gmail.com' ? true : false}>
                             <Card.Header>Analytics</Card.Header>
                             <Card.Body>View website analytics and manipulate the collected data for whatever you want.</Card.Body>
@@ -318,8 +358,9 @@ const LandingPage = () => {
                             <Card.Body>View physician phone and fax information gathered via Speckles, our medical records software.</Card.Body>
                         </Card>
                         <Card>
-                            <Card.Header>Thing 3</Card.Header>
-                            <Card.Body></Card.Body>
+                            <Card.Header>Add Patient Survey</Card.Header>
+                            <Card.Body>Click to create a new patient survery element to view on the <a href='/testimonials'>testimonials</a> page.</Card.Body>
+                            <Card.Link><Button onClick={() => handleShow({ title: 'Survey' })}>Add testimonial</Button></Card.Link>
                         </Card>
                     </CardGroup>
                 </Card.Body>

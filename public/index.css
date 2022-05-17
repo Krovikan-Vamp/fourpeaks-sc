@@ -689,7 +689,7 @@ span#paper-card {
 }
 
 #user-landing-right {
-    min-height: 80vh;
+    min-height: 70vh;
 }
 
 #user-landing-right h4 {
@@ -717,9 +717,17 @@ span#paper-card {
     background-color: #1eff1610;
 }
 
+#user-landing-cg .card {
+    margin: 0.45em;
+    border: 1px solid rgba(92, 90, 90, 0.199);
+    border-radius: 5px;
+}
 
-
-
+#user-landing-cg .card button {
+    /* padding: 0.75em; */
+    margin: 0.65em;
+    text-align: left;
+}
 
 
 

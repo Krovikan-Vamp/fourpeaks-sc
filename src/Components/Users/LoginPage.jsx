@@ -24,20 +24,18 @@ async function login_firebase(e) {
             .then((userCredential) => {
                 console.log(userCredential)  
                 if (!userCredential.user.emailVerified) {
-                    getCookie('verificationEmail') === undefined ? sendEmailVerification(auth.currentUser) : document.querySelector('#spanInfo').textContent = 'Email not verified, check your email.';
-                    setCookie('verificationEmail', new Date().getTime(), 1)
+                    // getCookie('verificationEmail') === undefined ? sendEmailVerification(auth.currentUser) : document.querySelector('#spanInfo').textContent = 'Email not verified, check your email.';
+                    // setCookie('verificationEmail', new Date().getTime(), 1)
 
                     document.querySelector('#spanInfo').classList.remove("is-hidden")
                     // return false;
-                } else {
-                    // alert('Please check your email for verification');
                 }
 
 
                 try {
                     const stringInfo = JSON.stringify(userCredential);
-                    // sessionStorage.setItem('userCredential', stringInfo); // Deprecated 4/6/22
                     setCookie('userCredential', stringInfo, 14);
+                    // sessionStorage.setItem('userCredential', stringInfo); // Deprecated 4/6/22
                     window.location.pathname = '/users/landing';
                 } catch (QuotaExceededError) {
                     alert('You need to allow Cookies to log in')
@@ -86,9 +84,6 @@ let LoginForm = () => {
             <Alert className='is-hidden' variant='warning' id='spanInfo' dismissible />
             <Button variant="primary" type="submit">
                 Submit
-            </Button>
-            <Button href='/users/landing' id='homepage-button' variant="primary" type="submit">
-                User Home Page
             </Button>
         </Form>
     )

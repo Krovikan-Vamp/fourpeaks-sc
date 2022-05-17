@@ -4,6 +4,7 @@ import { app } from '../firebase.js'
 
 export default function Testimonials() {
     const [testimonials, setTestimonials] = useState([])
+    const [loading, setLoading] = useState(false)
 
     var pathRef = window.location.pathname;
     pathRef = pathRef.split('/');
@@ -11,32 +12,40 @@ export default function Testimonials() {
     pathRef.unshift('home')
 
     async function getTests() {
-        // setLoading(true);
-        const dbRef = await app.firestore().collection('Testimonials').orderBy('date', 'desc')
+        setLoading(true);
+        const dbRef = await app.firestore().collection('Testimonials').orderBy('year', 'desc')
         dbRef.onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
                 items.push(doc.data());
             });
             setTestimonials(items);
-            // setLoading(false)
+            setLoading(false)
         })
     }
     useEffect(() => {
         getTests()
     }, [])
 
-    let unique = [...new Set(testimonials.map(item => item.date))];
-    let uniqueOccs = []
-
-    for (let i = 0; i < unique.length; i++) {
-        uniqueOccs.push({
-            date: unique[i],
-            occurrences: testimonials.reduce((n, test) => {
-                return n + (test.date === unique[i])
-            }, 0)
-        })
+    if (loading) {
+        return <h4>Content loading :)</h4>
     }
+    // testimonials.sort((a, b) => (a.month > b.month) ? 1 : -1)
+    // testimonials.map(item => console.log(item.month))
+    let uniques = [... new Set(testimonials.map(item => item.date_M_Y))]
+    let objs = uniques.map(date => { return { new_date: date } })
+
+    let results = objs.map((item) => {
+        console.log(`Searching for the month: `, item)
+        let arr = []
+        testimonials.map(testimonial => {
+            // if (testimonial.date_M_Y === )
+            testimonial.date_M_Y === item.new_date ? arr.push(testimonial.comment) : console.log();
+        })
+        return { date: item, comments: arr }
+    })
+    console.log(`Here are the uniques`, results)
+
 
     return (<>
         <Alert id='page-title' variant="light">
@@ -70,29 +79,20 @@ export default function Testimonials() {
                 {/* className='content-right' */}
                 <h4>Patient Testimonials</h4>
                 <div className='review-card-container'>
-                    {uniqueOccs.map((date) => {
-                        let elements = [];
-                        for (let i = 0; i < date.occurrences; i++) {
-                            if (i === date.occurrences - 1) {
-                                elements.push(<>
-                                    <div className='review-card'>
-                                        <li className='comment'>"{testimonials[i].comments}"</li>
-                                    </div>
-                                    <hr />
-                                </>)
-                            } else {
-                                elements.push(
-                                    <div className='review-card'>
-                                        <li className='comment'>"{testimonials[i].comments}"</li>
-                                    </div>
-                                )
-                            }
-                        }
-                        return (<div className='card-body'>
-                            <h5>{date.date.substring(3, date.date.length)}</h5>
-                            {elements}
-                        </div>)
-                    })}
+
+                    {/* Do something here 😀 */}
+                    {results.map((item) => {
+                        return <div className='review-card'>
+                            <h4>{item.date.new_date}</h4>
+                            <ul>
+                                {item.comments.map(comment => <li>{comment}</li>)}
+                            </ul>
+                            <hr />
+                        </div>
+                    })
+                    }
+
+
                 </div>
             </Card>
         </Container>

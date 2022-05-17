@@ -9,39 +9,26 @@ const logout = () => {
     window.location.pathname = '/';
 }
 
-const CheckUser = () => {
-    function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) === 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return undefined;
+function CheckUser() {
+    // Try to parse the cookie and use information
+    try {
+        let temp = JSON.parse(getCookie(`userCredential`))
+        temp.user.email = null
+    } catch (SyntaxError) {
+        alert(`Not logged in!`)
+        window.location.pathname = `/login`
     }
-    const userCookie = getCookie('userCredential');
-    if (userCookie === undefined) {
-        window.location.pathname = '/login'
-    } else {
-        return null;
-    }
+    return null
 }
 
 const AdminAppBar = () => {
-    CheckUser()
+    CheckUser() // No Need to have this here if it's in the component?
 
 
     const userInfo = JSON.parse(getCookie('userCredential')).user;
     // console.log(userInfo)
 
     return (<>
-        <CheckUser />
         <Navbar bg="light" id='admin-appbar' expand={false}>
             <Container fluid>
                 <Navbar.Brand href="#">Administrator Navigation</Navbar.Brand>
