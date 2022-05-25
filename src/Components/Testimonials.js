@@ -32,6 +32,7 @@ export default function Testimonials() {
     }
     // testimonials.sort((a, b) => (a.month > b.month) ? 1 : -1)
     // testimonials.map(item => console.log(item.month))
+    console.log(testimonials)
     let uniques = [... new Set(testimonials.map(item => item.date_M_Y))]
     let objs = uniques.map(date => { return { new_date: date } })
 

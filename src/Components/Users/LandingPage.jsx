@@ -1,4 +1,4 @@
-import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup, Modal, Form, FloatingLabel, Toast, Row, Col, ToastContainer } from 'react-bootstrap';
+import { Nav, NavDropdown, Button, Container, Card, Alert, CardGroup, Modal, Form, FloatingLabel, Toast, ToastContainer } from 'react-bootstrap';
 import { logout, CheckUser, AdminAppBar } from './AdminAppbar.jsx';
 import { useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
@@ -34,19 +34,16 @@ const AddSurvey = () => {
     const [show, setShow] = useState(false)
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     async function createTestimonial(e) {
-        e.preventDefault();
-        // const [tag, showTag] = useState(false)
-        console.log(e)
-        let date = e.target[0].value;
-        let comments = e.target[1].value;
-        date = date.split('-')
-        date = { month: parseInt(date[1]), year: date[0], full_date: `${months[parseInt(date[1] - 1)]} ${date[0]}` }
-        console.log(date, comments)
+        e.preventDefault(); // Prevent page reload
+        let date = e.target[0].value; // returns the month, year like this -> MM-YYYY
+        let comments = e.target[1].value; // string
+        date = date.split('-') // Sets `date` to ['MM', 'YYYY']
+        date = { month: parseInt(date[1]), year: date[0], full_date: `${months[parseInt(date[1] - 1)]} ${date[0]}` } // date = {month: M, year: YYYY, full_date: "spelledmonth, YYYY"}
 
         await app.firestore().collection('Testimonials').doc().set({ month: date.month, year: parseInt(date.year), date_M_Y: date.full_date, comment: comments })
             .then(() => {
-                setShow(true)
-                e.target[1].value = ''
+                setShow(true) // Shows a little badge if success
+                e.target[1].value = '' // Clear the prompt
             })
     }
     return (
@@ -181,34 +178,56 @@ const UpdateUser = () => {
 }
 // Still needs to be finished 😁
 const DeleteUserComp = () => {
+    const [show, setShow] = useState(false)
     async function deleteUser(e) {
         // Prevent page refresh :)
         e.preventDefault();
+        const annulEmail = e.target[0].value;
+        const isExistingUser = await app.firestore().collection('Users').doc(annulEmail).get().then(snap => snap.exists);
+        console.log(annulEmail)
 
+        !isExistingUser ? alert(`User does not exist!`) : 
         // Start the delete process
-        // const [loading, setLoading] = useState(true);
-        let auth = getAuth();
+        await app.firestore().collection('Users').doc(annulEmail).delete()
+            .then(() => {
+                try {
+                    app.firestore().collection('Admin Users').doc(annulEmail).delete().then(() => {
+                        // Show the toast that it was deleted!
+                        setShow(true);
+                        e.target[0].value = ``;
+                    })
+                } catch (err) {
+                    console.log(`Something broke`)
+                    console.error(err)
+                }
+            });
+        
 
-
-        console.log(auth.currentUser)
     }
     return (
         <Form onSubmit={deleteUser} autoComplete="off">
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                {/* <h4>Disclaimer</h4> */}
                 <p style={{ fontStyle: 'italic' }}>Deleting a user here only removes their access to restricted pages, <b>not</b> their login.</p>
-                <Form.Label>Annul Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Label>Annul Email address:</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" required />
                 <Form.Text className="text-muted">
-                    Enter the email address of the account to delete
+                    Remember to delete user from Firebase
                 </Form.Text>
             </Form.Group>
-            <Button variant="danger" type="submit">
-                Delete
-            </Button>
+            <Button variant="danger" type="submit">Delete</Button>
+            <ToastContainer position='bottom-end'>
+                <Toast bg='danger' id='success-toast-alert' onClose={() => setShow(false)} show={show}>
+                    <Toast.Header>
+                        <strong className="me-auto">User Deleted</strong>
+                        <small>seconds ago</small>
+                    </Toast.Header>
+                    <Toast.Body style={{ backgroundColor: '#F5F5F5' }}>User deleted successfully! Delete their login <a href='https://console.firebase.google.com/project/fourpeaks-sc/authentication/users'>here</a></Toast.Body>
+                </Toast>
+            </ToastContainer>
         </Form>
     )
 }
+// Remove above comment
 const pageElms = {
     create: {
         name: 'Create',
@@ -240,6 +259,7 @@ const LandingPage = () => {
     var f;
     // eslint-disable-next-line
     !sessionStorage.getItem('modalProps') ? sessionStorage.setItem('modalProps', JSON.stringify({ base: 'nothing' })) : f = 'hm';
+    // eslint-disable-next-line
     sessionStorage.getItem('modalProps') === undefined ? sessionStorage.setItem('modalProps', JSON.stringify({ base: 'nothing' })) : f = 'hm';
 
     const [show, setShow] = useState(false);
@@ -260,6 +280,7 @@ const LandingPage = () => {
                 break;
             case 'Survey':
                 sessionStorage.setItem('modalProps', JSON.stringify(pageElms.survey))
+                break;
             default:
                 break;
         }
@@ -328,11 +349,10 @@ const LandingPage = () => {
                 <h5>Admin Toolbox</h5>
                 <Nav>
                     <Nav.Link href='/users/info/analytics' style={{ width: '100%' }} hidden={userInfo.email !== 'zaxdev59@gmail.com' ? true : false} disabled={userInfo.email !== 'zaxdev59@gmail.com' ? true : false}>Analytics</Nav.Link>
-                    <Nav.Link href='/users/info/stats' style={{ width: '100%' }} disabled={userInfo.emailVerified ? false : true}>Physician Info</Nav.Link>
+                    <Nav.Link href='/users/info/stats' style={{ width: '100%' }}>Physician Info</Nav.Link>
                     <NavDropdown id='toolbox' hidden={''} title='User Manager'>
                         <NavDropdown.Item onClick={() => handleShow({ title: 'Create' })}>Create</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => handleShow({ title: 'View' })}>View</NavDropdown.Item>
-                        <NavDropdown.Item href=''>Update</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => handleShow({ title: 'Delete' })}>Delete</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
@@ -356,6 +376,7 @@ const LandingPage = () => {
                         <Card>
                             <Card.Header>Physician Information</Card.Header>
                             <Card.Body>View physician phone and fax information gathered via Speckles, our medical records software.</Card.Body>
+                            <Card.Link href='users/info/stats'><Button>View Numbers</Button></Card.Link>
                         </Card>
                         <Card>
                             <Card.Header>Add Patient Survey</Card.Header>
