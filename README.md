@@ -1,21 +1,60 @@
 # Four Peaks Surgery Center `1.0.62`
 
-Welcome to the repository for the Four Peaks Surgery Center website. The intent of this project is to create a meaningful and informational place where end-users can engage and learn about the services rendered and offered by [Four Peaks Surgery Center](https://fourpeaks-sc.web.app).
+Welcome to the repository for the Four Peaks Surgery Center website. The intent of this project is to create a meaningful and informational place where end-users can engage and learn about the services rendered and offered by [Four Peaks Surgery Center](https://fourpeaks-sc.web.app). Also see below to learn about managing site information.
 
 ## Dependencies
 
-All dependencies can be seen in the [package.json](https://github.com/Bwnr-Pwnr/fourpeaks-sc/blob/master/package.json) file. However, this project makes use of two major frameworks. They will be listed below along with the things they offer to the project!
+All Node dependencies can be seen in the [package.json](https://github.com/Bwnr-Pwnr/fourpeaks-sc/blob/master/package.json) file. However, this project makes use of two major frameworks. They will be listed below along with the things they offer to the project!
 
 - React
   - Path routing
-  - User experience (UX) improvements
+  - User experience (UX) and user interface (UI) tools
+  - Webpack compilation time
 - Firebase
   - Firestore
   - User Authentication
   - Cloud Messaging
-  - Serverless hosting
-  - Domain acquisition
+  - Server hosting configuration free
+  - Domain acquisition *WIP*
 
+Here are the other Node packages:
+
+```JSON
+"dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@firebase/analytics": "^0.7.7",
+    "@material-ui/icons": "^4.11.2",
+    "@mui/material": "^5.6.4",
+    "@mui/styled-engine-sc": "^5.1.0",
+    "@mui/x-data-grid": "^5.7.0",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.1.3",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.1.1",
+    "encrypt-rsa": "^2.0.1",
+    "firebase": "^9.6.6",
+    "firebase-admin": "^10.0.1",
+    "firebase-cli": "^1.2.0",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "mdbreact": "^5.2.0",
+    "nodemailer": "^6.7.3",
+    "prompt-sync": "^4.2.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.0.4",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^5.0.1",
+    "react-simple-star-rating": "^4.0.5",
+    "schema-object": "^4.0.11",
+    "styled-components": "^5.3.3",
+    "uuid": "^8.3.2",
+    "web-vitals": "^2.1.2"
+  }
+  ```
+  
 ## Installation
 
 To install this repository on a new machine...
